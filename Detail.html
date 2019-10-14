@@ -31,14 +31,16 @@
                 <!-- search -->
                 <div class="col">
                     <!-- "form group" of bootstrap alllows prepended search icon -->
-                    <form class="form-inline my-2 my-lg-0">
+                    <form class="form-inline my-2 my-lg-0" action="http://www.google.de/search" target="_blank">
                         <div class="input-group input-group-sm"> <!-- size: sm(all) -->
                             <!-- icon -->
                             <div class="input-group-prepend"> 
                                 <div class="input-group-text"><i class="fa fa-search"></i></div>
                             </div>
                             <!-- input box -->
-                            <input class="form-control mr-sm-2" type="search" placeholder="Suchen ..." aria-label="Search">
+                            <input class="form-control mr-sm-2" name="q" type="search" placeholder="Suchen ..." aria-label="Search">
+                            <!-- hidden fields -->
+                            <input name="as_sitesearch" type="hidden" value="http://fh-aachen.de/">
                         </div>
                     </form>
                 </div>
