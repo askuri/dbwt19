@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>Start.html</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <nav class="">
+            <div class="row align-items-center"> <!-- vertical alignment: center -->
+                <!-- logo -->
+                <div class="col-3">
+                    <h1><a class="" href="#">e-Mensa</a></h1>
+                </div>
+                
+                <!-- Menu -->
+                <div class="col-6">
+                    <a class="">Start</a> | 
+                    <a class="" href="#">Mahlzeiten</a> | 
+                    <a class="" href="#">Bestellung</a> | 
+                    <a class="" href="#">FH-Aachen</a>
+                </div>
+                
+                <!-- search -->
+                <div class="col">
+                    <!-- "form group" of bootstrap alllows prepended search icon -->
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="input-group input-group-sm"> <!-- size: sm(all) -->
+                            <!-- icon -->
+                            <div class="input-group-prepend"> 
+                                <div class="input-group-text"><i class="fa fa-search"></i></div>
+                            </div>
+                            <!-- input box -->
+                            <input class="form-control mr-sm-2" type="search" placeholder="Suchen ..." aria-label="Search">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <hr>
+    </header>
+    
+    <main>
+        <!-- header -->
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col"><h2>Details für "Falafel"</h2></div>
+        </div>
+        
+        <!-- content 1 -->
+        <div class="row">
+            <!-- login -->
+            <div class="col-3">
+                <fieldset class="form-group border p-2">
+                    <legend class="col-form-label w-auto">Login</legend>
+                    <form method="post" action="#">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" id="inputUser" placeholder="Benutzer">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control form-control-sm" id="inputPassword" placeholder="******">
+                        </div>
+                        <button type="submit" class="btn btn-link">Anmelden</button>
+                    </form>
+                </fieldset>
+            </div>
+            
+            <!-- detail image -->
+            <div class="col-6">
+                <img style="width: 100%" src="https://dummyimage.com/600x200/6b6b6b/0011ff">
+            </div>
+            
+            <!-- price and order -->
+            <div class="col-3">
+                <div class="row">
+                    <div class="col text-right">
+                        <p class="mb-0"><strong>Gast</strong>-Preis</p>
+                        <p class="mb-0 h3"><strong>5,95€</strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <a href="#" class="btn btn-light"><i class="fa fa-cutlery"></i> Vorbestellen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- content 2 -->
+        <div class="row">
+            <!-- sidebar -->
+            <div class="col-3">
+                <p>Melden Sie sich jetzt an, um die wirklich viel günstigeren Preise
+                für Mitarbeiter oder Studenten zu sehen</p>
+            </div>
+            
+            <!-- the real real content -->
+            <div class="col-6">
+                <!-- page selector -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#beschreibung" role="tab" aria-controls="beschreibung" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#zutaten" role="tab" aria-controls="zutaten" aria-selected="false">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#bewertungen" role="tab" aria-controls="bewertungen" aria-selected="false">Contact</a>
+                    </li>
+                </ul>
+                <!-- the real real real content -->
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="beschreibung" role="tabpanel" aria-labelledby="home-tab">
+                        Teigtasche mit Falafel aus Kichererbsen und Sesam, dazu
+                        passt hervorragend der <a href="#">Krautsalat</a>
+                    </div>
+                    <div class="tab-pane fade" id="zutaten" role="tabpanel" aria-labelledby="profile-tab">
+                        Blaukraut bleibt Blaukraut und Brautkleid bleibt Brautkleid
+                    </div>
+                    <div class="tab-pane fade" id="bewertungen" role="tabpanel" aria-labelledby="contact-tab">
+                        TODOOOO
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <hr>
+        <div class="row">
+            <div class="col-3">(c) 2019 Martin Weber & Leonhard Kipp</div>
+            <div class="col">
+                <a class="" href="#">Login</a> | 
+                <a class="" href="#">Registrieren</a> | 
+                <a class="" href="#">Zutatenliste</a> | 
+                <a class="" href="#">Impressum</a>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
