@@ -12,67 +12,68 @@
 </head>
 <body>
 <div class="container">
-    <header>
-        <nav class="">
-            <div class="row align-items-center"> <!-- vertical alignment: center -->
-                <!-- logo -->
-                <div class="col-3">
-                    <h1><a class="" href="#">e-Mensa</a></h1>
-                </div>
-                
-                <!-- Menu -->
-                <div class="col-6">
-                    <a class="">Start</a> | 
-                    <a class="" href="#">Mahlzeiten</a> | 
-                    <a class="" href="#">Bestellung</a> | 
-                    <a class="" href="#">FH-Aachen</a>
-                </div>
-                
-                <!-- search -->
-                <div class="col">
-                    <!-- "form group" of bootstrap alllows prepended search icon -->
-                    <form class="form-inline my-2 my-lg-0" action="http://www.google.de/search" target="_blank">
-                        <div class="input-group input-group-sm"> <!-- size: sm(all) -->
-                            <!-- icon -->
-                            <div class="input-group-prepend"> 
-                                <div class="input-group-text"><i class="fa fa-search"></i></div>
-                            </div>
-                            <!-- input box -->
-                            <input class="form-control mr-sm-2" name="q" type="search" placeholder="Suchen ..." aria-label="Search">
-                            <!-- hidden fields -->
-                            <input name="as_sitesearch" type="hidden" value="http://fh-aachen.de/">
-                        </div>
-                    </form>
-                </div>
+    <nav>
+        <div class="row align-items-center"> <!-- vertical alignment: center -->
+            <!-- logo -->
+            <div class="col-3">
+                <h1><a class="" href="#">e-Mensa</a></h1>
             </div>
-        </nav>
+
+            <!-- Menu -->
+            <div class="col-6">
+                <a class="">Start</a> | 
+                <a class="" href="#">Mahlzeiten</a> | 
+                <a class="" href="#">Bestellung</a> | 
+                <a class="" href="#">FH-Aachen</a>
+            </div>
+
+            <!-- search -->
+            <div class="col">
+                <!-- "form group" of bootstrap alllows prepended search icon -->
+                <form class="form-inline my-2 my-lg-0" action="http://www.google.de/search" target="_blank">
+                    <div class="input-group input-group-sm"> <!-- size: sm(all) -->
+                        <!-- icon -->
+                        <div class="input-group-prepend"> 
+                            <div class="input-group-text"><i class="fa fa-search"></i></div>
+                        </div>
+                        <!-- input box -->
+                        <input class="form-control mr-sm-2" name="q" type="search" placeholder="Suchen ..." aria-label="Search">
+                        <!-- hidden fields -->
+                        <input name="as_sitesearch" type="hidden" value="http://fh-aachen.de/">
+                    </div>
+                </form>
+            </div>
+        </div>
         <hr>
-    </header>
+    </nav>
     
     <main>
-        <!-- header -->
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col"><h2>Details für "Falafel"</h2></div>
-        </div>
+        <header>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col"><h2>Details für "Falafel"</h2></div>
+            </div>
+        </header>
         
         <!-- content 1 -->
         <div class="row">
             <!-- login -->
-            <div class="col-3">
-                <fieldset class="form-group border p-2">
-                    <legend class="col-form-label w-auto">Login</legend>
-                    <form method="post" action="#">
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-sm" id="inputUser" placeholder="Benutzer">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control form-control-sm" id="inputPassword" placeholder="******">
-                        </div>
-                        <button type="submit" class="btn btn-link">Anmelden</button>
-                    </form>
-                </fieldset>
-            </div>
+            <aside>
+                <div class="col-3">
+                    <fieldset class="form-group border p-2">
+                        <legend class="col-form-label w-auto">Login</legend>
+                        <form method="post" action="#">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-sm" id="inputUser" placeholder="Benutzer">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-sm" id="inputPassword" placeholder="******">
+                            </div>
+                            <button type="submit" class="btn btn-link">Anmelden</button>
+                        </form>
+                    </fieldset>
+                </div>
+            </aside>
             
             <!-- detail image -->
             <div class="col-6">
@@ -80,28 +81,31 @@
             </div>
             
             <!-- price and order -->
-            <div class="col-3">
-                <div class="row">
-                    <div class="col text-right">
-                        <p class="mb-0"><strong>Gast</strong>-Preis</p>
-                        <p class="mb-0 h3"><strong>5,95€</strong></p>
+            <aside>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col text-right">
+                            <p class="mb-0"><strong>Gast</strong>-Preis</p>
+                            <p class="mb-0 h3"><strong>5,95€</strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="#" class="btn btn-light"><i class="fa fa-cutlery"></i> Vorbestellen</a>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <a href="#" class="btn btn-light"><i class="fa fa-cutlery"></i> Vorbestellen</a>
-                    </div>
-                </div>
-            </div>
+            </aside>
         </div>
         
         <!-- content 2 -->
         <div class="row">
-            <!-- sidebar -->
-            <div class="col-3">
-                <p>Melden Sie sich jetzt an, um die wirklich viel günstigeren Preise
-                für Mitarbeiter oder Studenten zu sehen</p>
-            </div>
+            <aside>
+                <div class="col-3">
+                    <p>Melden Sie sich jetzt an, um die wirklich viel günstigeren Preise
+                    für Mitarbeiter oder Studenten zu sehen</p>
+                </div>
+            </aside>
             
             <!-- the real real content -->
             <div class="col-6">

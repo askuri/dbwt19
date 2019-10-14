@@ -12,76 +12,79 @@
 </head>
 <body>
 <div class="container">
-    <header>
-        <nav class="">
-            <div class="row align-items-center"> <!-- vertical alignment: center -->
-                <!-- logo -->
-                <div class="col-3">
-                    <h1><a class="" href="#">e-Mensa</a></h1>
-                </div>
-                
-                <!-- Menu -->
-                <div class="col-6">
-                    <a class="">Start</a> | 
-                    <a class="" href="#">Mahlzeiten</a> | 
-                    <a class="" href="#">Bestellung</a> | 
-                    <a class="" href="#">FH-Aachen</a>
-                </div>
-                
-                <!-- search -->
-                <div class="col">
-                    <!-- "form group" of bootstrap alllows prepended search icon -->
-                    <form class="form-inline my-2 my-lg-0" action="http://www.google.de/search" target="_blank">
-                        <div class="input-group input-group-sm"> <!-- size: sm(all) -->
-                            <!-- icon -->
-                            <div class="input-group-prepend"> 
-                                <div class="input-group-text"><i class="fa fa-search"></i></div>
-                            </div>
-                            <!-- input box -->
-                            <input class="form-control mr-sm-2" name="q" type="search" placeholder="Suchen ..." aria-label="Search">
-                            <!-- hidden fields -->
-                            <input name="as_sitesearch" type="hidden" value="http://fh-aachen.de/">
-                        </div>
-                    </form>
-                </div>
+    <nav>
+        <div class="row align-items-center"> <!-- vertical alignment: center -->
+            <!-- logo -->
+            <div class="col-3">
+                <h1><a class="" href="#">e-Mensa</a></h1>
             </div>
-        </nav>
+
+            <!-- Menu -->
+            <div class="col-6">
+                <a class="">Start</a> | 
+                <a class="" href="#">Mahlzeiten</a> | 
+                <a class="" href="#">Bestellung</a> | 
+                <a class="" href="#">FH-Aachen</a>
+            </div>
+
+            <!-- search -->
+            <div class="col">
+                <!-- "form group" of bootstrap alllows prepended search icon -->
+                <form class="form-inline my-2 my-lg-0" action="http://www.google.de/search" target="_blank">
+                    <div class="input-group input-group-sm"> <!-- size: sm(all) -->
+                        <!-- icon -->
+                        <div class="input-group-prepend"> 
+                            <div class="input-group-text"><i class="fa fa-search"></i></div>
+                        </div>
+                        <!-- input box -->
+                        <input class="form-control mr-sm-2" name="q" type="search" placeholder="Suchen ..." aria-label="Search">
+                        <!-- hidden fields -->
+                        <input name="as_sitesearch" type="hidden" value="http://fh-aachen.de/">
+                    </div>
+                </form>
+            </div>
+        </div>
         <hr>
-    </header>
+    </nav>
     
     <main>
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col"><h2>Verfügbare Speisen (Bestseller)</h2></div>
-        </div>
+        <header>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col"><h2>Verfügbare Speisen (Bestseller)</h2></div>
+            </div>
+        </header>
+        
         <div class="row">
             <div class="col-3">
                 <!-- Filter -->
-                <fieldset class="form-group border p-2">
-                    <legend class="col-form-label w-auto">Speiseliste filtern</legend>
-                    <form method="post" action="#">
-                        <div class="form-group">
-                            <select class="form-control" id="sel1">
-                                <option>Kategorien</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label><input type="checkbox" value=""> nur verfügbare</label>
+                <aside>
+                    <fieldset class="form-group border p-2">
+                        <legend class="col-form-label w-auto">Speiseliste filtern</legend>
+                        <form method="post" action="#">
+                            <div class="form-group">
+                                <select class="form-control" id="sel1">
+                                    <option>Kategorien</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
                             </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value=""> nur vegetarische</label>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""> nur verfügbare</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""> nur vegetarische</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""> nur vegane</label>
+                                </div>
                             </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value=""> nur vegane</label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Speisen filtern</button>
-                    </form>
-                </fieldset>
+                            <button type="submit" class="btn btn-primary">Speisen filtern</button>
+                        </form>
+                    </fieldset>
+                </aside>
             </div>
             
             <!-- gallery -->
