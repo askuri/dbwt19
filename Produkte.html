@@ -12,74 +12,79 @@
 </head>
 <body>
 <div class="container">
-    <header>
-        <nav class="">
-            <div class="row align-items-center"> <!-- vertical alignment: center -->
-                <!-- logo -->
-                <div class="col-3">
-                    <h1><a class="" href="#">e-Mensa</a></h1>
-                </div>
-                
-                <!-- Menu -->
-                <div class="col-6">
-                    <a class="">Start</a> | 
-                    <a class="" href="#">Mahlzeiten</a> | 
-                    <a class="" href="#">Bestellung</a> | 
-                    <a class="" href="#">FH-Aachen</a>
-                </div>
-                
-                <!-- search -->
-                <div class="col">
-                    <!-- "form group" of bootstrap alllows prepended search icon -->
-                    <form class="form-inline my-2 my-lg-0">
-                        <div class="input-group input-group-sm"> <!-- size: sm(all) -->
-                            <!-- icon -->
-                            <div class="input-group-prepend"> 
-                                <div class="input-group-text"><i class="fa fa-search"></i></div>
-                            </div>
-                            <!-- input box -->
-                            <input class="form-control mr-sm-2" type="search" placeholder="Suchen ..." aria-label="Search">
-                        </div>
-                    </form>
-                </div>
+    <nav>
+        <div class="row align-items-center"> <!-- vertical alignment: center -->
+            <!-- logo -->
+            <div class="col-3">
+                <h1>e-Mensa</h1>
             </div>
-        </nav>
+
+            <!-- Menu -->
+            <div class="col-6">
+                <a href="Start.html">Start</a> | 
+                <a>Mahlzeiten</a> | 
+                <a href="#">Bestellung</a> | 
+                <a href="http://fh-aachen.de" target="_blank">FH-Aachen</a>
+            </div>
+
+            <!-- search -->
+            <div class="col">
+                <!-- "form group" of bootstrap alllows prepended search icon -->
+                <form class="form-inline my-2 my-lg-0" action="http://www.google.de/search" target="_blank">
+                    <div class="input-group input-group-sm"> <!-- size: sm(all) -->
+                        <!-- icon -->
+                        <div class="input-group-prepend"> 
+                            <div class="input-group-text"><i class="fa fa-search"></i></div>
+                        </div>
+                        <!-- input box -->
+                        <input class="form-control mr-sm-2" name="q" type="search" placeholder="Suchen ..." aria-label="Search">
+                        <!-- hidden fields -->
+                        <input name="as_sitesearch" type="hidden" value="http://fh-aachen.de/">
+                    </div>
+                </form>
+            </div>
+        </div>
         <hr>
-    </header>
+    </nav>
     
     <main>
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col"><h2>Verfügbare Speisen (Bestseller)</h2></div>
-        </div>
+        <header>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col"><h2>Verfügbare Speisen (Bestseller)</h2></div>
+            </div>
+        </header>
+        
         <div class="row">
             <div class="col-3">
                 <!-- Filter -->
-                <fieldset class="form-group border p-2">
-                    <legend class="col-form-label w-auto">Speiseliste filtern</legend>
-                    <form method="post" action="#">
-                        <div class="form-group">
-                            <select class="form-control" id="sel1">
-                                <option>Kategorien</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label><input type="checkbox" value=""> nur verfügbare</label>
+                <aside>
+                    <fieldset class="form-group border p-2">
+                        <legend class="col-form-label w-auto">Speiseliste filtern</legend>
+                        <form method="post" action="#">
+                            <div class="form-group">
+                                <select class="form-control" id="sel1">
+                                    <option>Kategorien</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
                             </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value=""> nur vegetarische</label>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""> nur verfügbare</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""> nur vegetarische</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""> nur vegane</label>
+                                </div>
                             </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value=""> nur vegane</label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Speisen filtern</button>
-                    </form>
-                </fieldset>
+                            <button type="submit" class="btn btn-primary">Speisen filtern</button>
+                        </form>
+                    </fieldset>
+                </aside>
             </div>
             
             <!-- gallery -->
@@ -89,28 +94,28 @@
                         <img alt="Curry Wok" style="width:100%" src="https://dummyimage.com/200x200/0008a6/fff.png">
                         <div class="caption">
                             Curry Wok<br>
-                            <a href="#">Details</a>
+                            <a href="Detail.html">Details</a>
                         </div>
                     </div>
                     <div class="col-3 thumbnail">
                         <img alt="Schnitzel" style="width:100%" src="https://dummyimage.com/200x200/0008a6/fff.png">
                         <div class="caption">
                             Schnitzel<br>
-                            <a href="#">Details</a>
+                            <a href="Detail.html">Details</a>
                         </div>
                     </div>
                     <div class="col-3 thumbnail">
                         <img alt="Food" class="img-thumbnail" style="width:100%" src="https://dummyimage.com/200x200/0008a6/fff.png">
                         <div class="caption text-muted">
                             Bratrolle<br>
-                            <a href="#" class="btn-link disabled">Details</a>
+                            <a href="Detail.html" class="btn-link disabled">Details</a>
                         </div>
                     </div>
                     <div class="col-3 thumbnail">
                         <img alt="Food" style="width:100%" src="https://dummyimage.com/200x200/0008a6/fff.png">
                         <div class="caption">
                             Krautsalat<br>
-                            <a href="#">Details</a>
+                            <a href="Detail.html">Details</a>
                         </div>
                     </div>
                 </div>
@@ -119,28 +124,28 @@
                         <img alt="Curry Wok" style="width:100%" src="https://dummyimage.com/200x200/0008a6/fff.png">
                         <div class="caption">
                             Falafel<br>
-                            <a href="#">Details</a>
+                            <a href="Detail.html">Details</a>
                         </div>
                     </div>
                     <div class="col-3 thumbnail">
                         <img alt="Curry Wok" style="width:100%" src="https://dummyimage.com/200x200/0008a6/fff.png">
                         <div class="caption">
                             Currywurst<br>
-                            <a href="#">Details</a>
+                            <a href="Detail.html">Details</a>
                         </div>
                     </div>
                     <div class="col-3 thumbnail">
                         <img alt="Curry Wok" style="width:100%" src="https://dummyimage.com/200x200/0008a6/fff.png">
                         <div class="caption">
                             Käsestulle<br>
-                            <a href="#">Details</a>
+                            <a href="Detail.html">Details</a>
                         </div>
                     </div>
                     <div class="col-3 thumbnail">
                         <img alt="Food" style="width:100%" src="https://dummyimage.com/200x200/0008a6/fff.png">
                         <div class="caption">
                             Spiegelei<br>
-                            <a href="#">Details</a>
+                            <a href="Detail.html">Details</a>
                         </div>
                     </div>
                 </div>
@@ -153,10 +158,10 @@
         <div class="row">
             <div class="col-3">(c) 2019 Martin Weber & Leonhard Kipp</div>
             <div class="col">
-                <a class="" href="#">Login</a> | 
-                <a class="" href="#">Registrieren</a> | 
-                <a class="" href="#">Zutatenliste</a> | 
-                <a class="" href="#">Impressum</a>
+                <a href="#">Login</a> | 
+                <a href="#">Registrieren</a> | 
+                <a href="#">Zutatenliste</a> | 
+                <a href="Impressum.html">Impressum</a>
             </div>
         </div>
     </footer>
