@@ -18,7 +18,7 @@
             <div class="row align-items-center"> <!-- vertical alignment: center -->
                 <!-- logo -->
                 <div class="col-3">
-                    <h1><a class="link" href="#">e-Mensa</a></h1>
+                    <h1>e-Mensa</h1>
                 </div>
 
                 <!-- Menu -->

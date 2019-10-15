@@ -21,7 +21,7 @@
 
             <!-- Menu -->
             <div class="col-6">
-                <a href="Start.html">Start</a> | 
+                <a href="Start.php">Start</a> | 
                 <a href="Produkte.html">Mahlzeiten</a> | 
                 <a href="#">Bestellung</a> | 
                 <a href="http://fh-aachen.de" target="_blank">FH-Aachen</a>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <a href="#" class="btn btn-light"><i class="fa fa-cutlery"></i> Vorbestellen</a>
+                        <a href="#" class="shadow border border-secondary btn btn-light"><i class="fa fa-cutlery"></i> Vorbestellen</a>
                     </div>
                 </div>
             </div>
@@ -111,17 +111,18 @@
                 <!-- page selector -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#beschreibung" role="tab" aria-controls="beschreibung" aria-selected="true">Home</a>
+                        <a class="nav-link active" data-toggle="tab" href="#beschreibung" role="tab" aria-controls="beschreibung" aria-selected="true">Beschreibung</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#zutaten" role="tab" aria-controls="zutaten" aria-selected="false">Profile</a>
+                        <a class="nav-link" data-toggle="tab" href="#zutaten" role="tab" aria-controls="zutaten" aria-selected="false">Zutaten</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#bewertungen" role="tab" aria-controls="bewertungen" aria-selected="false">Contact</a>
+                        <a class="nav-link" data-toggle="tab" href="#bewertungen" role="tab" aria-controls="bewertungen" aria-selected="false">Bewertungen</a>
                     </li>
                 </ul>
                 <!-- the real real real content -->
                 <div class="tab-content">
+                    <!-- Didn't you forgot to id the first li elem "home-tab"? You mention it in aria-labelledby -->
                     <div class="tab-pane fade show active" id="beschreibung" role="tabpanel" aria-labelledby="home-tab">
                         Teigtasche mit Falafel aus Kichererbsen und Sesam, dazu
                         passt hervorragend der <a href="#">Krautsalat</a>
@@ -129,6 +130,8 @@
                     <div class="tab-pane fade" id="zutaten" role="tabpanel" aria-labelledby="profile-tab">
                         Blaukraut bleibt Blaukraut und Brautkleid bleibt Brautkleid
                     </div>
+
+                    <!-- Mahlzeit-Bewertung -->
                     <div class="tab-pane fade" id="bewertungen" role="tabpanel" aria-labelledby="contact-tab">
                         <form action="http://bc5.m2c-lab.fh-aachen.de/form.php" method="post">
                         <input type="hidden"  name="matrikel" value="3188047"> 
@@ -173,7 +176,7 @@
             </div>
         </div>
     </main>
-    
+
     <footer>
         <hr>
         <div class="row">
