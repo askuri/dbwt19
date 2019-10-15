@@ -126,8 +126,45 @@
                         Zehn zahme Ziegen zogen zehn Zentner Zucker zum Zoo.
                         Blaukraut bleibt Blaukraut und Brautkleid bleibt Brautkleid
                     </div>
+
+                    <!-- Mahlzeit-Bewertung -->
                     <div class="tab-pane fade" id="bewertungen" role="tabpanel" aria-labelledby="contact-tab">
-                        TODOOOO
+                        <form action="#" method="post">
+                        <div class="form-group row justify-content-center">
+                            <label for="bewertung_mahlzeit" class="col-6 col-form-label text-right">Mahlzeit</label>
+                            <div class="col-6">
+                                <select id="bewertung_mahlzeit" class="form-control" name="">
+                                    <option selected value="Falafel">Falafel</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <label for="bewertung_user" class="col-6 col-form-label text-right">Benutzername</label>
+                            <div class="col-6">
+                                <input required type="text" class="form-control" id="bewertung_user" placeholder="Max Mustermann">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="rating_rating" class="col-6 col-form-label text-right">Bewertung</label>
+                            <div class="col-6">
+                                <input type="number" min="0" max="5" id="rating_rating" name="rating_rating" step="1">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="bewertung_bemerkung" class="col-6 col-form-label text-right">Bemerkung</label>
+                            <div class="col-6">
+                                <textarea cols="15" id="bewertung_bemerkung" name="Bemerkung" rows="4">
+                                    Geben Sie eine Bemerkung ein, wenn Sie möchten...
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6"></div>
+                            <div class="col-6">
+                            <button type="submit" class="btn btn-primary">Bewertung absenden</button>
+                            </div>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
