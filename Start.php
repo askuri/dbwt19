@@ -23,7 +23,7 @@
 
                 <!-- Menu -->
                 <div class="col-6">
-                    <a class="link" href="Start.html">Start</a> | 
+                    <a class="link" href="Start.php">Start</a> | 
                     <a class="link" href="Produkte.html">Mahlzeiten</a> | 
                     <a class="link" href="#">Bestellung</a> | 
                     <a class="link" target="_blank" rel="noopener noreferrer" href="https://www.fh-aachen.de/">FH-Aachen</a>
@@ -63,6 +63,11 @@
                 <div class="col-6">
                     <h3>Leckere Gerichte vorbestellen</h3>
                     <p>...und gemeinsam mit Kommilitonen und Freunden essen</p>
+                    <p> <?php echo "Die Uhrzeit ist: " . date("h:i:sa"); ?> </p>
+                    <?php if (isset($_GET['username'])) {
+                        $user = $_GET['username'];
+                        echo "<p>Hallo $user</p>";
+                    }?>
                 </div>
                 <div class="col-3">
                     <button type="button" class="btn btn-primary btn-block"><i class="fa fa-hand-pointer-o" aria-hidden="true">Registrieren</i></button>
@@ -83,7 +88,7 @@
     <footer>
         <hr>
         <div class="row align-items-center"> 
-            <div class="col-3">(c) 2019 Martin Weber & Leonhard Kipp</div>
+            <div class="col-3">(c) <?php echo date("Y"); ?> Martin Weber & Leonhard Kipp</div>
             <div class="col">
                 <a class="link" href="#">Login</a> | 
                 <a class="link" href="#">Registrieren</a> | 
