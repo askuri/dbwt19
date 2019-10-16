@@ -9,26 +9,37 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
     <nav>
-        <div class="row align-items-center"> <!-- vertical alignment: center -->
+        <div class="row align-items-center nav-border-bottom"> <!-- vertical alignment: center -->
             <!-- logo -->
             <div class="col-3">
                 <h1>e-Mensa</h1>
             </div>
 
             <!-- Menu -->
-            <div class="col-6">
-                <a href="Start.php">Start</a> | 
-                <a href="Produkte.html">Mahlzeiten</a> | 
-                <a href="#">Bestellung</a> | 
-                <a href="http://fh-aachen.de" target="_blank">FH-Aachen</a>
+            <div class="col">
+                <ul class="nav">
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="Start.php">Start</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="Produkte.html">Mahlzeiten</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="#">Bestellung</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="http://fh-aachen.de" target="_blank">FH-Aachen</a>
+                    </li>
+                </ul>
             </div>
 
             <!-- search -->
-            <div class="col">
+            <div class="col-3">
                 <!-- "form group" of bootstrap alllows prepended search icon -->
                 <form class="form-inline my-2 my-lg-0" action="http://www.google.de/search" target="_blank">
                     <div class="input-group input-group-sm"> <!-- size: sm(all) -->
@@ -44,7 +55,6 @@
                 </form>
             </div>
         </div>
-        <hr>
     </nav>
     
     <main>
@@ -76,19 +86,19 @@
             </div>
             
             <!-- detail image -->
-            <div class="col-6">
+            <div class="col-7">
                 <img style="width: 100%" src="https://dummyimage.com/600x200/6b6b6b/0011ff">
             </div>
             
             <!-- price and order -->
-            <div class="col-3">
-                <div class="row">
-                    <div class="col text-right">
+            <div class="col-2 text-right">
+                <div class="row" style="height: 50%">
+                    <div class="col">
                         <p class="mb-0"><strong>Gast</strong>-Preis</p>
                         <p class="mb-0 h3"><strong>5,95€</strong></p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row align-items-end" style="height: 50%">
                     <div class="col">
                         <a href="#" class="shadow border border-secondary btn btn-light"><i class="fa fa-cutlery"></i> Vorbestellen</a>
                     </div>
@@ -107,7 +117,7 @@
             </div>
             
             <!-- the real real content -->
-            <div class="col-6">
+            <div class="col-7">
                 <!-- page selector -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
@@ -122,7 +132,6 @@
                 </ul>
                 <!-- the real real real content -->
                 <div class="tab-content">
-                    <!-- Didn't you forgot to id the first li elem "home-tab"? You mention it in aria-labelledby -->
                     <div class="tab-pane fade show active" id="beschreibung" role="tabpanel" aria-labelledby="home-tab">
                         Teigtasche mit Falafel aus Kichererbsen und Sesam, dazu
                         passt hervorragend der <a href="#">Krautsalat</a>
@@ -178,14 +187,23 @@
     </main>
 
     <footer>
-        <hr>
-        <div class="row">
+        <div class="row align-items-center nav-border-top">
             <div class="col-3">(c) 2019 Martin Weber & Leonhard Kipp</div>
             <div class="col">
-                <a href="#">Login</a> | 
-                <a href="#">Registrieren</a> | 
-                <a href="#">Zutatenliste</a> | 
-                <a href="Impressum.html">Impressum</a>
+                <ul class="nav">
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="#">Registrieren</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="#">Zutatenliste</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="Impressum.html">Impressum</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </footer>

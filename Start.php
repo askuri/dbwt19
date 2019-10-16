@@ -13,40 +13,49 @@
 </head>
 <body>
 <div class="container">
-    <header>
-        <nav class="">
-            <div class="row align-items-center"> <!-- vertical alignment: center -->
-                <!-- logo -->
-                <div class="col-3">
-                    <h1>e-Mensa</h1>
-                </div>
-
-                <!-- Menu -->
-                <div class="col-6">
-                    <a class="link" href="Start.php">Start</a> | 
-                    <a class="link" href="Produkte.html">Mahlzeiten</a> | 
-                    <a class="link" href="#">Bestellung</a> | 
-                    <a class="link" target="_blank" rel="noopener noreferrer" href="https://www.fh-aachen.de/">FH-Aachen</a>
-                </div>
-
-                <!-- search -->
-                <div class="col">
-                    <!-- "form group" of bootstrap alllows prepended search icon -->
-                    <form class="form-inline my-2 my-lg-0">
-                        <div class="input-group input-group-sm"> <!-- size: sm(all) -->
-                            <!-- icon -->
-                            <div class="input-group-prepend"> 
-                                <div class="input-group-text"><i class="fa fa-search"></i></div>
-                            </div>
-                            <!-- input box -->
-                            <input class="form-control mr-sm-2" type="search" placeholder="Suchen ..." aria-label="Search">
-                        </div>
-                    </form>
-                </div>
+    <nav>
+        <div class="row align-items-center nav-border-bottom"> <!-- vertical alignment: center -->
+            <!-- logo -->
+            <div class="col-3">
+                <h1>e-Mensa</h1>
             </div>
-        </nav>
-        <hr>
-    </header>
+
+            <!-- Menu -->
+            <div class="col">
+                <ul class="nav">
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link">Start</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="Produkte.html">Mahlzeiten</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="#">Bestellung</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="http://fh-aachen.de" target="_blank">FH-Aachen</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- search -->
+            <div class="col-3">
+                <!-- "form group" of bootstrap alllows prepended search icon -->
+                <form class="form-inline my-2 my-lg-0" action="http://www.google.de/search" target="_blank">
+                    <div class="input-group input-group-sm"> <!-- size: sm(all) -->
+                        <!-- icon -->
+                        <div class="input-group-prepend"> 
+                            <div class="input-group-text"><i class="fa fa-search"></i></div>
+                        </div>
+                        <!-- input box -->
+                        <input class="form-control mr-sm-2" name="q" type="search" placeholder="Suchen ..." aria-label="Search">
+                        <!-- hidden fields -->
+                        <input name="as_sitesearch" type="hidden" value="http://fh-aachen.de/">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
 
     <main>
         <!-- layout with bootstrap grid here, see https://getbootstrap.com/docs/4.3/layout/grid/ -->
@@ -70,8 +79,8 @@
                     }?>
                 </div>
                 <div class="col-3">
-                    <button type="button" class="btn btn-primary btn-block"><i class="fa fa-hand-pointer-o" aria-hidden="true">Registrieren</i></button>
-                    <button type="button" class="btn btn-primary btn-block"><i class="fa fa-sign-out">Anmelden</i></button>
+                    <button type="button" class="btn btn-light btn-block"><i class="fa fa-hand-pointer-o" aria-hidden="true">Registrieren</i></button>
+                    <button type="button" class="btn btn-light btn-block"><i class="fa fa-sign-out">Anmelden</i></button>
                 </div>
             </div>
             <div class="row" >
@@ -79,21 +88,30 @@
                     <p>Registrieren Sie sich <a class="link" href="Registrieren.html">hier</a>, um über die Veröffentlichung des Dienstes per Mail informiert zu werden.</p>
                 </div>
                 <div class="col-9">
-                            <img width="100%"  src="https://dummyimage.com/800x200/000/fff" alt="Picture"></img>
+                    <img width="100%"  src="https://dummyimage.com/800x200/000/fff" alt="Picture"></img>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <hr>
-        <div class="row align-items-center"> 
-            <div class="col-3">(c) <?php echo date("Y"); ?> Martin Weber & Leonhard Kipp</div>
+        <div class="row align-items-center nav-border-top">
+            <div class="col-3">(c) 2019 Martin Weber & Leonhard Kipp</div>
             <div class="col">
-                <a class="link" href="#">Login</a> | 
-                <a class="link" href="#">Registrieren</a> | 
-                <a class="link" href="#">Zutatenliste</a> | 
-                <a class="link" href="Impressum.html">Impressum</a>
+                <ul class="nav">
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="#">Registrieren</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="#">Zutatenliste</a>
+                    </li>
+                    <li class="nav-item nav-border-right">
+                        <a class="nav-link" href="Impressum.html">Impressum</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </footer>
