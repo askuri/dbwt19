@@ -87,7 +87,7 @@
             
             <!-- detail image -->
             <div class="col-7">
-                <img style="width: 100%" src="https://dummyimage.com/600x200/6b6b6b/0011ff">
+                <img style="width: 100%" src="https://dummyimage.com/600x200/6b6b6b/0011ff" alt="Ein Dummy Image">
             </div>
             
             <!-- price and order -->
@@ -120,28 +120,28 @@
             <div class="col-7">
                 <!-- page selector -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
+                    <li class="nav-item" id="beschreibung-tab">
                         <a class="nav-link active" data-toggle="tab" href="#beschreibung" role="tab" aria-controls="beschreibung" aria-selected="true">Beschreibung</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="zutaten-tab">
                         <a class="nav-link" data-toggle="tab" href="#zutaten" role="tab" aria-controls="zutaten" aria-selected="false">Zutaten</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="bewertung-tab">
                         <a class="nav-link" data-toggle="tab" href="#bewertungen" role="tab" aria-controls="bewertungen" aria-selected="false">Bewertungen</a>
                     </li>
                 </ul>
                 <!-- the real real real content -->
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="beschreibung" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="beschreibung" role="tabpanel" aria-labelledby="beschreibung-tab">
                         Teigtasche mit Falafel aus Kichererbsen und Sesam, dazu
                         passt hervorragend der <a href="#">Krautsalat</a>
                     </div>
-                    <div class="tab-pane fade" id="zutaten" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade" id="zutaten" role="tabpanel" aria-labelledby="zutaten-tab">
                         Blaukraut bleibt Blaukraut und Brautkleid bleibt Brautkleid
                     </div>
 
                     <!-- Mahlzeit-Bewertung -->
-                    <div class="tab-pane fade" id="bewertungen" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="tab-pane fade" id="bewertungen" role="tabpanel" aria-labelledby="bewertung-tab">
                         <form action="http://bc5.m2c-lab.fh-aachen.de/form.php" method="post">
                         <input type="hidden"  name="matrikel" value="3188047"> 
                         <input type="hidden"  name="kontrolle" value="Kip"> 
@@ -162,7 +162,7 @@
                         <div class="form-group row">
                             <label for="rating_rating" class="col-6 col-form-label text-right">Bewertung</label>
                             <div class="col-6">
-                                <input type="number" min="0" max="5" name="bewertung" id="rating_rating" name="rating_rating" step="1">
+                                <input type="number" min="0" max="5" name="bewertung" id="rating_rating"  step="1">
                             </div>
                         </div>
                         <div class="form-group row">
