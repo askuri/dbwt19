@@ -96,7 +96,7 @@
 
     <footer>
         <div class="row align-items-center nav-border-top">
-            <div class="col-3">(c) 2019 Martin Weber & Leonhard Kipp</div>
+            <div class="col-3">(c) <?php echo date('Y') ?> Martin Weber & Leonhard Kipp</div>
             <div class="col">
                 <ul class="nav">
                     <li class="nav-item nav-border-right">
