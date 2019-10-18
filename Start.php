@@ -40,7 +40,7 @@
 
             <!-- search -->
             <div class="col-3">
-                <!-- "form group" of bootstrap alllows prepended search icon -->
+                <!-- "form group" of bootstrap allows prepended search icon -->
                 <form class="form-inline my-2 my-lg-0" action="http://www.google.de/search" target="_blank">
                     <div class="input-group input-group-sm"> <!-- size: sm(all) -->
                         <!-- icon -->
@@ -58,13 +58,15 @@
     </nav>
 
     <main>
-        <!-- layout with bootstrap grid here, see https://getbootstrap.com/docs/4.3/layout/grid/ -->
+        <!-- layout with bootstrap grid here -->
         <div class="container">
+            <!-- top-image -->
             <div class="row justify-content-center" >
                 <div class="col">
                     <img width="100%" src="https://dummyimage.com/800x200/000/fff" alt="Picture"></img>
                 </div>
             </div>
+            
             <div class="row justify-content-between pt-4" >
                 <div class="col-3" >
                     <p>Der Dienst <b>e-Mensa</b> ist noch beta. Sie können bereits <a class="link" href="Produkte.html">Mahlzeiten</a> durchstöbern, aber noch nicht bestellen.</p>
@@ -83,6 +85,7 @@
                     <button type="button" class="btn btn-light btn-block"><i class="fa fa-sign-out">Anmelden</i></button>
                 </div>
             </div>
+            
             <div class="row" >
                 <div class="col-3" >
                     <p>Registrieren Sie sich <a class="link" href="Registrieren.html">hier</a>, um über die Veröffentlichung des Dienstes per Mail informiert zu werden.</p>
