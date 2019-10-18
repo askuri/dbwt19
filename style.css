@@ -1,4 +1,4 @@
-b{
+b {
     font-weight: bold
 }
 
@@ -17,5 +17,5 @@ a {
 
 .nav-border-top {
     border-top: 1px solid #ddd;
-    margin-bottom: 5px;
+    margin-top: 5px;
 }
