@@ -63,7 +63,7 @@
             <!-- top-image -->
             <div class="row justify-content-center" >
                 <div class="col">
-                    <img width="100%" src="https://dummyimage.com/800x200/000/fff" alt="Picture"></img>
+                    <img  class="w-100" src="https://dummyimage.com/800x200/000/fff" alt="Picture">
                 </div>
             </div>
             
@@ -91,7 +91,7 @@
                     <p>Registrieren Sie sich <a class="link" href="Registrieren.html">hier</a>, um über die Veröffentlichung des Dienstes per Mail informiert zu werden.</p>
                 </div>
                 <div class="col-9">
-                    <img width="100%"  src="https://dummyimage.com/800x200/000/fff" alt="Picture"></img>
+                    <img class="w-100"  src="https://dummyimage.com/800x200/000/fff" alt="Picture">
                 </div>
             </div>
         </div>
