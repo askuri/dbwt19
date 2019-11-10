@@ -68,28 +68,29 @@ if (!($result = mysqli_query($remoteConnection, $query))) {
         <!-- gallery -->
         <div class="col-7 text-center">
             <?php
-            $x = 0; // läuft von 1 bis 3
-            while ($row = mysqli_fetch_assoc($result)) { 
-                if ($x == 0) {
-                    echo '<div class="row">'; // start new row
+            
+            while (true) {
+                echo '<div class="row">'; // start new row
+                
+                for ($x = 0; $x < 4; $x++) {
+                    
+                    $row = mysqli_fetch_assoc($result);
+                    if (!$row) {
+                        echo '</div>'; // end row
+                        break 2; // break 2 loops
+                    }
+                    // TODO Beschreibung
+                    echo '<div class="col-3 thumbnail">
+                        <img alt="'.$row['Alt-Text'].'" class="w-100"
+                            src="data:image/png;base64,'.base64_encode($row["Binärdaten"]).'">
+                        <div class="caption">
+                            '.$row['Beschreibung'].'<br>
+                            <a href="Detail.php?id='.$row['ID'].'">Details</a>
+                        </div>
+                    </div>';
                 }
                 
-                // TODO Beschreibung
-                echo '<div class="col-3 thumbnail">
-                    <img alt="'.$row['Alt-Text'].'" class="w-100"
-                        src="data:image/png;base64,'.base64_encode($row["Binärdaten"]).'">
-                    <div class="caption">
-                        '.$row['Beschreibung'].'<br>
-                        <a href="Detail.php?id='.$row['ID'].'">Details</a>
-                    </div>
-                </div>';
-                
-                if ($x == 3) {
-                    echo '</div>'; // end row
-                    $x = 0;
-                } else {
-                    $x++;
-                }
+                echo '</div>'; // end row
             }
             ?>
             <!-- Beispiele

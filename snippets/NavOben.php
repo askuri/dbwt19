@@ -9,10 +9,10 @@
         <div class="col">
             <ul class="nav">
                 <li class="nav-item nav-border-right">
-                    <a class="nav-link" <?=$_SERVER['REQUEST_URI'] === '/Start.php' ?: 'href="Start.php"' ?>>Start</a>
+                    <a class="nav-link" <?=$_SERVER['REQUEST_URI'] === '/Start.php' ? '' : 'href="Start.php"' ?>>Start</a>
                 </li>
                 <li class="nav-item nav-border-right">
-                    <a class="nav-link" <?=$_SERVER['REQUEST_URI'] === '/Produkte.php' ?: 'href="Produkte.php"' ?>>Mahlzeiten</a>
+                    <a class="nav-link" <?=$_SERVER['REQUEST_URI'] === '/Produkte.php' ? '' : 'href="Produkte.php"' ?>>Mahlzeiten</a>
                 </li>
                 <li class="nav-item nav-border-right">
                     <a class="nav-link" href="#">Bestellung</a>
