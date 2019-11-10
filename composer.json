@@ -1,0 +1,6 @@
+{
+    "name": "mw5878s/m2",
+    "require": {
+        "vlucas/phpdotenv": "^3.6"
+    }
+}
