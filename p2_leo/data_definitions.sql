@@ -11,7 +11,6 @@ DROP TABLE IF EXISTS `Hat_Bilder`;
 DROP TABLE IF EXISTS `Mahlzeiten_Enthält_Zutaten`;
 DROP TABLE IF EXISTS `Deklaration_Braucht_Mahlzeit`;
 
--- Dann die Tabellen ohne Foreign Keys
 
 -- Dann in richtiger Reihenfolge andere Tabellen
 
