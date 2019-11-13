@@ -9,6 +9,16 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
+// Bilder einfügen
+$query =
+        "INSERT INTO Bilder (`Alt-Text`, `Titel`, Binärdaten) ".
+        "VALUES ('NoPic','NoTitle','".mysqli_real_escape_string($remoteConnection, file_get_contents('images/48x48fff.jpg'))."'); ";
+mysqli_query($remoteConnection, $query);
+for ($i = 1; $i <= 5; $i++) {
+    $query = "INSERT INTO MahlzeitenHatBilder VALUES ($i, 1); ";
+    mysqli_query($remoteConnection, $query);
+}
+
 $query = 'SELECT m.ID, m.Beschreibung, m.Vorrat, b.`Alt-Text`, b.Binärdaten FROM Mahlzeiten m
 	LEFT JOIN MahlzeitenHatBilder mhb ON m.ID = mhb.`MID` -- left join damit Mahlzeiten ohne Bild auch rein kommen
 	LEFT JOIN Bilder b ON mhb.BID = b.ID';
@@ -21,6 +31,7 @@ if ($_GET['limit'] ?? false) {
 }
 
 if (!($result = mysqli_query($remoteConnection, $query))) {
+    echo mysqli_error($remoteConnection);
     die('Query konnte nicht ausgeführt werden');
 }
 ?>
@@ -82,7 +93,7 @@ if (!($result = mysqli_query($remoteConnection, $query))) {
                     // TODO Beschreibung
                     echo '<div class="col-3 thumbnail">
                         <img alt="'.$row['Alt-Text'].'" class="w-100"
-                            src="data:image/png;base64,'.base64_encode($row["Binärdaten"]).'">
+                            src="data:image/jpeg;base64,'.base64_encode($row["Binärdaten"]).'">
                         <div class="caption">
                             '.$row['Beschreibung'].'<br>
                             <a href="Detail.php?id='.$row['ID'].'">Details</a>
