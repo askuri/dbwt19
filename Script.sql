@@ -357,15 +357,15 @@ INSERT INTO Mahlzeiten VALUES (NULL, NULL, 'Vegetarischer Döner', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
 INSERT INTO Mahlzeiten VALUES (NULL, NULL, 'Lasagne', 1);
-INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
+INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 4.10, 2.60, 99);
 
 INSERT INTO Mahlzeiten VALUES (NULL, NULL, 'Pizza', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
--- Bilder hinzufügen
-INSERT INTO Bilder VALUES (NULL, 'Alt-text', 'Titel', )
-
--- Bilder verlinken
+-- copy from public
+INSERT INTO Zutaten 
+	SELECT NULL, pz.Name, pz.Bio, pz.Vegan, pz.Vegetarisch, pz.Glutenfrei
+	FROM public.zutaten pz;
 
 -- Querys
 DELETE FROM `Benutzer` WHERE Nummer=4;
