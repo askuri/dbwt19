@@ -322,3 +322,7 @@ ALTER TABLE Kategorie ADD CONSTRAINT `Image_id_constraint`
 FOREIGN KEY (Image_id) REFERENCES Bild (ID)
 ON DELETE SET NULL
 ON UPDATE RESTRICT;
+
+-- Create table zutaten
+DROP TABLE IF EXISTS Zutaten;
+CREATE TABLE Zutaten SELECT * FROM `public`.`zutaten`;

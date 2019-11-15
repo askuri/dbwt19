@@ -6,7 +6,7 @@ Name: Martin Weber
 E-Mail: martin.weber1@alumni.fh-aachen.de
 Matrikelnummer: 3187679
 
-# Meilenstein 2
+# Meilenstein 2 Paket 2
 ## Abspeicherung Studiengang
 - Als Enum:
     -Vorteil: DB überprüft richtigkeit v. Studiengang bei Eingabe
@@ -60,4 +60,16 @@ Phone number --> International standard 15 digits
 ID INT UNSIGNED PRIMARY KEY REFERENCES Mahlzeit (ID)
            ON DELETE CASCADE,
 
+# Meilenstein 2 Paket 3
+## Erstellen von Snippets
+- Navigation oben und unten gleich.
+- Html header auch immer gleich, da jede Seite bootstrap + Font awesome
+- Html ende immer gleich
 
+## Anzeigen von Anzahl Elemente in Zutaten Tabell
+- SQL Query "Select COUNT(ID) FROM Zutaten"
+- oder Result Klasse hat attribut "num_rows"
+
+## Kopieren der Zutaten Tabelle
+- DROP TABLE IF EXISTS Zutaten;
+- CREATE TABLE Zutaten SELECT * FROM `public`.`zutaten`;

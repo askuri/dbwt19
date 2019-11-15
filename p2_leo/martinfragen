@@ -1,0 +1,2 @@
+Warum hier <? statt <?php 
+<a class="nav-link" <?=$_SERVER['REQUEST_URI'] === '/Start.php' ? '' : 'href="Start.php"' ?>>Start</a>
