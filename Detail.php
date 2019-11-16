@@ -18,12 +18,13 @@ if (mysqli_connect_errno()) {
 
 //Query For Mahlzeit
 $user_price_category = price_for('Gast') ;
-$query = 'SELECT m.Beschreibung, m.Name, b.`Alt-Text`, b.Binrdaten, p.'.$user_price_category.' FROM Mahlzeiten m
-	LEFT JOIN MahlzeitenHatBilder mhb ON m.ID = mhb.`MID` -- left join damit Mahlzeiten ohne Bild auch rein kommen
-	LEFT JOIN Bilder b ON mhb.BID = b.ID
-	JOIN Preise p ON m.ID = p.ID
+// left join damit Mahlzeiten ohne Bild auch rein kommen
+$query = 'SELECT m.Beschreibung, m.Name, b.`Alt-Text`, b.Binärdaten, p.'.$user_price_category.' FROM Mahlzeiten m 
+	LEFT JOIN MahlzeitenHatBilder mhb ON m.ID = mhb.`MID` 
+	LEFT JOIN Bilder b ON mhb.BID = b.ID 
+	JOIN Preise p ON m.ID = p.ID 
 
-	WHERE p.Jahr = YEAR(NOW())
+	WHERE p.Jahr = YEAR(NOW()) 
         AND m.ID = '.$_GET['id'].';'; // Achtung SQL injection. Nicht hinsehen! Schwere Augenschäden möglich
 if (!($result = mysqli_query($remoteConnection, $query))) {
     die('Query konnte nicht ausgeführt werden');
@@ -34,9 +35,9 @@ if ($product === NULL) {
     header('location: Produkte.php');
 }
 
-//Query for Zutaten
+// Query for Zutaten
 $query = 'SELECT z.ID, z.Name, z.Bio, z.Vegan,z.Vegetarisch, z.Glutenfrei FROM Zutaten z
-        JOIN MahlzeitenEnthltZutaten mz ON mz.ZID = z.ID
+        JOIN MahlzeitenEnthältZutaten mz ON mz.ZID = z.ID
         JOIN Mahlzeiten m ON m.ID = mz.MID
         WHERE m.ID = '.$_GET['id'].';';
 
@@ -80,7 +81,7 @@ include 'snippets/NavOben.php';
         <!-- detail image -->
         <div class="col-7">
             <?php
-    echo '<img alt="'.$product["Alt-Text"].'" class="w-100" src="data:image/jpeg;base64,'.base64_encode($product["Binrdaten"]).'">'
+    echo '<img alt="'.$product["Alt-Text"].'" class="w-100" src="data:image/jpeg;base64,'.base64_encode($product["Binärdaten"]).'">'
             ?>
         </div>
 
