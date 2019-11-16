@@ -27,7 +27,7 @@ if ($_GET['avail'] ?? false) {
     $query .= ' WHERE Vorrat > 0 ';
 }
 if ($_GET['limit'] ?? false) {
-    $query .= ' LIMIT'. $_GET['limit'];
+    $query .= ' LIMIT '. $_GET['limit'];
 }
 
 if (!($result = mysqli_query($remoteConnection, $query))) {
