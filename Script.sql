@@ -7,16 +7,15 @@
 -- Relationen: Entität1VerbEntität2
 -- Constraint namen beginnen immer mit dem namen der tabelle in der sie geschrieben stehen
 
-/*
-FRAGEN
-- named constraints inkl keys wirklich überall durchsetzen? syntax: https://www.w3schools.com/sql/sql_primarykey.asp
-	- ne. nur auf unique, fk und check
-- in wie fern datentypen optimieren? auch PKs optimieren?
-*/
+-- FRAGEN
+-- - named constraints inkl keys wirklich überall durchsetzen? syntax: https://www.w3schools.com/sql/sql_primarykey.asp
+	-- - ne. nur auf unique, fk und check
+-- - in wie fern datentypen optimieren? auch PKs optimieren?
 
 
 -- Ihre Datenbank auswählen, ändern Sie den Namen entsprechend...
-USE `db3187679`;
+-- USE `db3187679`;
+USE `db3188047`;
 -- Empfohlen ist, zuerst die Attribute der Tabellen anzulegen und die Relationen 
 -- anschließend vorzunehmen. dabei werden Sie erkennen, dass nicht jede Lösch-
 -- reihenfolge (DROP) funktioniert.
@@ -170,7 +169,9 @@ CREATE TABLE `Kategorien` (
 -- -----------------
 CREATE TABLE `Mahlzeiten` (
 	`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  -- Name ist selber hinzugefügt
 	KategorieID INT UNSIGNED,
+  Name Varchar(30),
 	`Beschreibung` VARCHAR(200) NOT NULL,
 	`Vorrat` INT NOT NULL DEFAULT 0,
 	
@@ -203,7 +204,8 @@ CREATE TABLE `Preise` (
 
 -- -----------------
 CREATE TABLE `Zutaten` (
-	`ID` MEDIUMINT(5) UNSIGNED NOT NULL AUTO_INCREMENT, -- max 5 lang definiert im Datentyp
+-- max 5 lang definiert im Datentyp
+`ID` MEDIUMINT(5) UNSIGNED  CHECK (ID > 9999 && ID < 100000), 
 	`Name` VARCHAR(50) NOT NULL,
 	`Bio` BOOL NOT NULL,
 	`Vegan` BOOL NOT NULL,
@@ -339,38 +341,56 @@ ALTER TABLE Kategorien DROP CONSTRAINT Kategorien_FK_Bilder;
 ALTER TABLE Kategorien ADD CONSTRAINT Kategorien_FK_Bilder FOREIGN KEY (BilderID) REFERENCES Bilder(ID);
 
 -- Zutaten hinzufügen; PK, Name, Bio, Vegan, Glutenfrei, Vegetarisch
-INSERT INTO Zutaten VALUES (NULL, 'Isombe', TRUE, TRUE, TRUE, TRUE);
-INSERT INTO Zutaten VALUES (NULL, 'Ibirayi', TRUE, TRUE, FALSE, TRUE);
-INSERT INTO Zutaten VALUES (NULL, 'Umunyu', FALSE, TRUE, TRUE, TRUE);
-INSERT INTO Zutaten VALUES (NULL, 'Ifi', TRUE, FALSE, TRUE, FALSE);
-INSERT INTO Zutaten VALUES (NULL, 'Maismehl', FALSE, TRUE, FALSE, TRUE);
+INSERT INTO Zutaten VALUES (10000, 'Isombe', TRUE, TRUE, TRUE, TRUE);
+INSERT INTO Zutaten VALUES (10001, 'Ibirayi', TRUE, TRUE, FALSE, TRUE);
+INSERT INTO Zutaten VALUES (10002, 'Umunyu', FALSE, TRUE, TRUE, TRUE);
+INSERT INTO Zutaten VALUES (10003, 'Ifi', TRUE, FALSE, TRUE, FALSE);
+INSERT INTO Zutaten VALUES (10004, 'Maismehl', FALSE, TRUE, FALSE, TRUE);
 
 -- Mahlzeiten einfügen
 INSERT INTO Kategorien VALUES (NULL, NULL, 'Ruandische Küche', NULL);
-INSERT INTO Mahlzeiten VALUES (NULL, LAST_INSERT_ID(), 'Kawunga', 1);
+INSERT INTO Mahlzeiten VALUES (NULL, LAST_INSERT_ID(), 'Kawunga','Ein Gericht aus Ruanda', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
-INSERT INTO Mahlzeiten VALUES (NULL, NULL, 'Pommes', 1);
+INSERT INTO Mahlzeiten VALUES (NULL, NULL, 'Pommes','Frisch aus der Fritteuse', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
-INSERT INTO Mahlzeiten VALUES (NULL, NULL, 'Vegetarischer Döner', 1);
+INSERT INTO Mahlzeiten VALUES (NULL, NULL,'Döner', 'Vegetarischer Döner', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
-INSERT INTO Mahlzeiten VALUES (NULL, NULL, 'Lasagne', 1);
+INSERT INTO Mahlzeiten VALUES (NULL, NULL,'Lasagne', 'Martin kennt nur Fastfood', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 4.10, 2.60, 99);
 
-INSERT INTO Mahlzeiten VALUES (NULL, NULL, 'Pizza', 1);
+INSERT INTO Mahlzeiten VALUES (NULL,NULL, 'Pizza', 'Nur Mittwochs!', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
--- copy from public
-INSERT INTO Zutaten 
-	SELECT NULL, pz.Name, pz.Bio, pz.Vegan, pz.Vegetarisch, pz.Glutenfrei
-	FROM public.zutaten pz;
+
+-- copy zutaten from public
+INSERT INTO Zutaten(ID, Name, Bio, Vegan, Vegetarisch, Glutenfrei)
+SELECT pz.ID + 10004, pz.Name, pz.Bio, pz.Vegan, pz.Vegetarisch, pz.Glutenfrei
+FROM public.zutaten pz;
+
+INSERT INTO MahlzeitenEnthältZutaten(MID, ZID) VALUES
+(1, 10000),
+(1, 10001),
+(1, 10002),
+(1, 10003),
+(1, 10004),
+(2, 10085),
+(2, 10086),
+(2, 10087),
+(2, 10088),
+(2, 10089),
+(2, 10090),
+(3, 10224),
+(3, 10274),
+(3, 10326),
+(3, 10334);
 
 -- Querys
 DELETE FROM `Benutzer` WHERE Nummer=4;
 
-SELECT m.ID, m.Beschreibung, m.Vorrat, b.`Alt-Text`, b.Binärdaten FROM Mahlzeiten m
+SELECT m.Name, m.ID, m.Beschreibung, m.Vorrat, b.`Alt-Text`, b.Binärdaten FROM Mahlzeiten m
 	LEFT JOIN MahlzeitenHatBilder mhb ON m.ID = mhb.`MID` -- left join damit Mahlzeiten ohne Bild auch rein kommen
 	LEFT JOIN Bilder b ON mhb.BID = b.ID;
 

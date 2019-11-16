@@ -71,5 +71,11 @@ ID INT UNSIGNED PRIMARY KEY REFERENCES Mahlzeit (ID)
 - oder Result Klasse hat attribut "num_rows"
 
 ## Kopieren der Zutaten Tabelle
-- DROP TABLE IF EXISTS Zutaten;
-- CREATE TABLE Zutaten SELECT * FROM `public`.`zutaten`;
+-- copy from public
+INSERT INTO Zutaten(ID, Name, Bio, Vegan, Vegetarisch, Glutenfrei)
+	SELECT pz.ID + 10004, pz.Name, pz.Bio, pz.Vegan, pz.Vegetarisch, pz.Glutenfrei
+	FROM public.zutaten pz;
+    
+## Diverses
+- PHP ist kein JavaScript
+    -Ausführen von Querys bei Klick auf Button funktioniert nicht.

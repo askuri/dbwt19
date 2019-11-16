@@ -145,6 +145,7 @@ ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 Beschreibung TINYTEXT DEFAULT ("Eine sehr leckere Speise"),
 Vorrat SMALLINT UNSIGNED DEFAULT (0),
 Verfügbar BOOLEAN DEFAULT (0), -- Is this meal orderable?
+Name VARCHAR(30),
 
 Kategorie_id INT UNSIGNED NOT NULL,
 CONSTRAINT `kategorie_id_constraint`
@@ -324,5 +325,6 @@ ON DELETE SET NULL
 ON UPDATE RESTRICT;
 
 -- Create table zutaten
-DROP TABLE IF EXISTS Zutaten;
-CREATE TABLE Zutaten SELECT * FROM `public`.`zutaten`;
+INSERT INTO Zutaten(ID, Name, Bio, Vegan, Vegetarisch, Glutenfrei)
+SELECT pz.ID + 10004, pz.Name, pz.Bio, pz.Vegan, pz.Vegetarisch, pz.Glutenfrei
+FROM public.zutaten pz;
