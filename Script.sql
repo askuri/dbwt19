@@ -9,6 +9,152 @@
 
 -- FRAGEN
 -- - named constraints inkl keys wirklich überall durchsetzen? synt key
+	-- - ne. nur auf unique, fk und check
+-- - in wie fern datentypen optimieren? auch PKs optimieren?
+
+
+-- Ihre Datenbank auswählen, ändern Sie den Namen entsprechend...
+-- USE `db3187679`;
+USE `db3188047`;
+-- Empfohlen ist, zuerst die Attribute der Tabellen anzulegen und die Relationen 
+-- anschließend vorzunehmen. dabei werden Sie erkennen, dass nicht jede Lösch-
+-- reihenfolge (DROP) funktioniert.
+
+-- Relationen löschen
+DROP TABLE IF EXISTS BenutzerBefreundetMit;
+DROP TABLE IF EXISTS BestellungenEnthältMahlzeiten;
+DROP TABLE IF EXISTS MahlzeitenBrauchtDeklarationen;
+DROP TABLE IF EXISTS MahlzeitenEnthältZutaten;
+DROP TABLE IF EXISTS MahlzeitenHatBilder;
+DROP TABLE IF EXISTS `FH AngehörigeGehörtZuFachbereiche`;
+
+
+-- Entitäten löschen
+-- Entität "an den rändern"
+DROP TABLE IF EXISTS `Fachbreiche`;
+DROP TABLE IF EXISTS `Zutaten`;
+DROP TABLE IF EXISTS `Deklarationen`;
+DROP TABLE IF EXISTS `Preise`;
+DROP TABLE IF EXISTS `Kommentare`;
+
+-- Entität wo vorsicht geboten ist
+DROP TABLE IF EXISTS `Mitarbeiter`;
+DROP TABLE IF EXISTS `Studenten`;
+DROP TABLE IF EXISTS Bestellungen; -- Foreign key auf benutzer
+DROP TABLE IF EXISTS `Gäste`; -- Foreign key von Bestellungen
+DROP TABLE IF EXISTS `FH Angehörige`; -- Foreign key von Bestellungen
+DROP TABLE IF EXISTS Benutzer; -- Foreign key von Bestellungen
+DROP TABLE IF EXISTS Mahlzeiten; -- Foreign key von ... ner menge. also ans ende
+DROP TABLE IF EXISTS `Kategorien`;
+DROP TABLE IF EXISTS `Bilder`;
+
+-- -----------------
+CREATE TABLE Benutzer (
+	Nummer INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`E-Mail` VARCHAR(255) NOT NULL, -- Backticks wegen Minus im namen
+	Bild VARBINARY(1000) NOT NULL, -- verbessern Sie die Datentypen, wenn nötig
+	Nutzername VARCHAR(50) NOT NULL, -- NOT NULL weil nicht optional
+
+	-- Auth
+	`Hash` CHAR(60) NOT NULL, -- immer 60 zeichen lang
+	LetzterLogin DATETIME DEFAULT NULL,
+
+	Anlegedatum DATETIME NOT NULL,
+	Aktiv BOOL NOT NULL,
+
+	-- Name
+	Vorname VARCHAR(50) NOT NULL,
+	Nachname VARCHAR(50) NOT NULL,
+
+	Geburtsdatum DATE,
+
+	CONSTRAINT Benutzer_PK PRIMARY KEY (`Nummer`),
+	CONSTRAINT Benutzer_Unique_email UNIQUE(`E-Mail`),
+	CONSTRAINT Benutzer_Unique_Nutzername UNIQUE(`Nutzername`)
+);
+
+
+-- -----------------
+-- Verwende Vertikale Positionierung
+-- Fremdschlüssel definieren?
+CREATE TABLE `Gäste` (
+	`Nummer` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Grund` VARCHAR(254) NOT NULL,
+	`Ablaufdatum` DATE NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 WEEK),
+	PRIMARY KEY (Nummer),
+	CONSTRAINT Gäste_FK_Benutzer FOREIGN KEY (Nummer) REFERENCES Benutzer(Nummer)
+		ON DELETE CASCADE -- kaskadiertes löschen aus 2.3
+);
+
+
+-- -----------------
+-- Verwende Vertikale Positionierung
+CREATE TABLE `FH Angehörige` (
+	`Nummer` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY (Nummer),
+	CONSTRAINT FH_FK_Benutzer FOREIGN KEY (Nummer) REFERENCES Benutzer(Nummer)
+		ON DELETE CASCADE -- kaskadiertes löschen aus 2.3
+);
+
+
+-- -----------------
+CREATE TABLE `Fachbreiche` (
+	`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Website` VARCHAR(255) NOT NULL,
+	`Name` VARCHAR(50) NOT NULL,
+
+	PRIMARY KEY(`ID`)
+);
+
+-- ----------------
+CREATE TABLE `Mitarbeiter` (
+	`Nummer` INT UNSIGNED NOT NULL,
+	`Büro` VARCHAR(20),
+	`Telefon` VARCHAR(20),
+
+	PRIMARY KEY (Nummer),
+	CONSTRAINT Mitarbeiter_FK_FH_Angehörige FOREIGN KEY (Nummer) REFERENCES `FH Angehörige`(Nummer)
+		ON DELETE CASCADE -- kaskadiertes löschen aus 2.3
+);
+
+
+CREATE TABLE `Studenten` (
+	`Nummer` INT UNSIGNED NOT NULL,
+	`Studiengang` ENUM('ET', 'INF', 'ISE', 'MCD', 'WI') NOT NULL,
+	`Matrikelnummer` MEDIUMINT UNSIGNED NOT NULL,
+
+ 	PRIMARY KEY (Matrikelnummer),
+	CONSTRAINT Studenten_check_Matrikelnummer CHECK(Matrikelnummer >= 10000000 AND Matrikelnummer < 1000000000),
+	CONSTRAINT Studenten_FK_FH_Angehörige FOREIGN KEY (Nummer) REFERENCES `FH Angehörige`(Nummer)
+		ON DELETE CASCADE -- kaskadiertes löschen aus 2.3
+);
+
+
+-- --------
+CREATE TABLE `Bestellungen` (
+	`Nummer` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	BenutzerNummer INT UNSIGNED,
+	`BestellZeitpunkt` DATETIME NOT NULL DEFAULT(NOW()),
+	`AbholZeitpunkt` DATETIME,
+	-- Endpreis?
+
+	PRIMARY KEY (`Nummer`),
+	CONSTRAINT Bestellungen_FK_Bestellungen FOREIGN KEY (BenutzerNummer) REFERENCES Benutzer(Nummer), -- "Benutzer tätigt Bestellungen"
+	CONSTRAINT Bestellungen_check CHECK(AbholZeitpunkt > BestellZeitpunkt)
+);
+
+-- -----------------
+CREATE TABLE `Bilder` (
+	`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Alt-Text` VARCHAR(50) NOT NULL,
+	`Titel` VARCHAR(50),
+	`Binärdaten` BLOB(1000) NOT NULL,
+
+	PRIMARY KEY (`ID`)
+);
+
+-- -----------------
+-- Muss vor Mahlzeiten, da Foreign key
 CREATE TABLE `Kategorien` (
 	`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT, -- pk
 	`BilderID` INT UNSIGNED, -- fk
@@ -32,6 +178,7 @@ CREATE TABLE `Mahlzeiten` (
 	PRIMARY KEY (`ID`),
 	CONSTRAINT Mahlzeiten_FK_Kategorie FOREIGN KEY (KategorieID) REFERENCES Kategorien(ID) -- "Mahlzeiten in Kategorie"
 );
+
 
 -- -----------------
 CREATE TABLE `Deklarationen` (
@@ -215,7 +362,7 @@ INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 INSERT INTO Mahlzeiten VALUES (NULL, NULL,'Lasagne', 'Martin kennt nur Fastfood', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 4.10, 2.60, 99);
 
-INSERT INTO Mahlzeiten VALUES (NULL,NULL, 'Pizza', 'Nur Mittwochs!', 1);
+INSERT INTO Mahlzeiten VALUES (NULL,NULL, 'Pizza', 'Nur Mittwochs!', 0);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
 
@@ -240,7 +387,6 @@ INSERT INTO MahlzeitenEnthältZutaten(MID, ZID) VALUES
 (3, 10274),
 (3, 10326),
 (3, 10334);
-o3, 10334);
 
 -- Querys
 DELETE FROM `Benutzer` WHERE Nummer=4;
@@ -248,16 +394,3 @@ DELETE FROM `Benutzer` WHERE Nummer=4;
 SELECT m.Name, m.ID, m.Beschreibung, m.Vorrat, b.`Alt-Text`, b.Binärdaten FROM Mahlzeiten m
 	LEFT JOIN MahlzeitenHatBilder mhb ON m.ID = mhb.`MID` -- left join damit Mahlzeiten ohne Bild auch rein kommen
 	LEFT JOIN Bilder b ON mhb.BID = b.ID;
-
-
-
-
-
-
-
-
-
-
-
-
-
