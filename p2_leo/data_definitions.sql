@@ -326,5 +326,5 @@ ON UPDATE RESTRICT;
 
 -- Create table zutaten
 INSERT INTO Zutaten(ID, Name, Bio, Vegan, Vegetarisch, Glutenfrei)
-SELECT pz.ID + 10004, pz.Name, pz.Bio, pz.Vegan, pz.Vegetarisch, pz.Glutenfrei
+SELECT pz.ID + 10007, pz.Name, pz.Bio, pz.Vegan, pz.Vegetarisch, pz.Glutenfrei
 FROM public.zutaten pz;
