@@ -1,6 +1,5 @@
 <?php
 require 'inc/PHPprepare.php';
-require 'inc/PopulateZutatenTable.php';
 
 
 $remoteConnection = mysqli_connect( getenv('DB_HOST'), getenv('DB_USER'), getenv('DB_PASS'), getenv('DB_NAME'), (int) getenv('DB_PORT') );
@@ -15,19 +14,12 @@ if (!($result = mysqli_query($remoteConnection, $query))) {
 }
 $remoteConnection->close();
 
+$zutatenListe = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $zutatenListe[] = $row;
+}
 
-include 'snippets/HTMLStart.php';
-include 'snippets/NavOben.php';
-?>
-<h2>Zutatenliste (<?=$result->num_rows ?>)</h2>
-<main>
-            <?php
-include 'snippets/ZutatenTableHead.php';
-populateZutatenTable($result);
-include 'snippets/CloseTable.php';
-            ?>
-</main>
-
-<?php include 'snippets/NavUnten.php'; ?>
-<?php include 'snippets/HTMLEnd.php'; ?>
-
+echo $blade->run("pages.Zutaten",  [
+    'num_rows' => $result->num_rows,
+    'zliste' => $zutatenListe
+]);
