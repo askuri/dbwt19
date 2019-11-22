@@ -13,7 +13,7 @@
                     <a class="nav-link" {!! $_SERVER['REQUEST_URI'] === '/Zutaten.php' ? ' ' : 'href="Zutaten.php"' !!}>Zutatenliste</a>
                 </li>
                 <li class="nav-item nav-border-right">
-                    <a class="nav-link" href="Impressum.html">Impressum</a>
+                    <a class="nav-link" href="Impressum.php">Impressum</a>
                 </li>
             </ul>
         </div>
