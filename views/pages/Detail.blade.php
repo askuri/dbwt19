@@ -32,7 +32,7 @@
 
             <!-- detail image -->
             <div class="col-7">
-                <img alt="{{ $product["Alt-Text"] }}" class="w-100" src="data:image/jpeg;base64,{{ base64_encode($product["Binärdaten"]) }}">'
+                <img alt="{{ $product["Alt-Text"] }}" class="w-100" src="data:image/jpeg;base64,{{ base64_encode($product["Binärdaten"]) }}">
             </div>
 
             <!-- price and order -->
