@@ -15,24 +15,13 @@
             <!-- login -->
             <div class="col-3">
                 <aside>
-                    <fieldset class="form-group border p-2">
-                        <legend class="col-form-label w-auto">Login</legend>
-                        <form method="post" action="#">
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-sm" id="inputUser" placeholder="Benutzer">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control form-control-sm" id="inputPassword" placeholder="******">
-                            </div>
-                            <button type="submit" class="btn btn-link">Anmelden</button>
-                        </form>
-                    </fieldset>
+                    @include('includes.Login')
                 </aside>
             </div>
 
             <!-- detail image -->
             <div class="col-7">
-                <img alt="{{ $product["Alt-Text"] }}" class="w-100" src="data:image/jpeg;base64,{{ base64_encode($product["Binärdaten"]) }}">'
+                <img alt="{{ $product["Alt-Text"] }}" class="w-100" src="data:image/jpeg;base64,{{ base64_encode($product["Binärdaten"]) }}">
             </div>
 
             <!-- price and order -->
