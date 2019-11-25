@@ -348,21 +348,34 @@ INSERT INTO Zutaten VALUES (10002, 'Umunyu', FALSE, TRUE, TRUE, TRUE);
 INSERT INTO Zutaten VALUES (10003, 'Ifi', TRUE, FALSE, TRUE, FALSE);
 INSERT INTO Zutaten VALUES (10004, 'Maismehl', FALSE, TRUE, FALSE, TRUE);
 
+INSERT INTO Kategorien(ID, Bezeichnung, hat) VALUES
+(1,"International", NULL),
+(2,"Italienisch", 1),
+(3,"Amerikanisch", 1),
+(4,"Ungarisch", 1),
+(5,"Schwedisch", 1),
+(6,"Griechisch", 1),
+(7,"Mexikanisch", 1),
+(8,"Saisonal", NULL),
+(9,"Sommer", 8),
+(10,"Winter", 8),
+(11,"Herbst", 8),
+(12,"Frühling", 8);
+
 -- Mahlzeiten einfügen
-INSERT INTO Kategorien VALUES (NULL, NULL, 'Ruandische Küche', NULL);
-INSERT INTO Mahlzeiten VALUES (NULL, LAST_INSERT_ID(), 'Kawunga','Ein Gericht aus Ruanda', 1);
+INSERT INTO Mahlzeiten VALUES (NULL, 4, 'Kawunga','Ein Gericht aus Ruanda', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
-INSERT INTO Mahlzeiten VALUES (NULL, NULL, 'Pommes','Frisch aus der Fritteuse', 1);
+INSERT INTO Mahlzeiten VALUES (NULL, 2, 'Pommes','Frisch aus der Fritteuse', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
-INSERT INTO Mahlzeiten VALUES (NULL, NULL,'Döner', 'Vegetarischer Döner', 1);
+INSERT INTO Mahlzeiten VALUES (NULL, 3,'Döner', 'Vegetarischer Döner', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
-INSERT INTO Mahlzeiten VALUES (NULL, NULL,'Lasagne', 'Martin kennt nur Fastfood', 1);
+INSERT INTO Mahlzeiten VALUES (NULL, 5,'Lasagne', 'Martin kennt nur Fastfood', 1);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 4.10, 2.60, 99);
 
-INSERT INTO Mahlzeiten VALUES (NULL,NULL, 'Pizza', 'Nur Mittwochs!', 0);
+INSERT INTO Mahlzeiten VALUES (NULL, 6, 'Pizza', 'Nur Mittwochs!', 0);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
 
@@ -388,9 +401,14 @@ INSERT INTO MahlzeitenEnthältZutaten(MID, ZID) VALUES
 (3, 10326),
 (3, 10334);
 
+
 -- Querys
 DELETE FROM `Benutzer` WHERE Nummer=4;
 
 SELECT m.Name, m.ID, m.Beschreibung, m.Vorrat, b.`Alt-Text`, b.Binärdaten FROM Mahlzeiten m
 	LEFT JOIN MahlzeitenHatBilder mhb ON m.ID = mhb.`MID` -- left join damit Mahlzeiten ohne Bild auch rein kommen
 	LEFT JOIN Bilder b ON mhb.BID = b.ID;
+
+-- Query: Get kategories
+SELECT k.ID, k.Bezeichnung, k.hat FROM Kategorien k 
+ORDER BY CASE WHEN k.hat IS NULL THEN k.ID ELSE k.hat END, k.hat;

@@ -79,3 +79,8 @@ INSERT INTO Zutaten(ID, Name, Bio, Vegan, Vegetarisch, Glutenfrei)
 ## Diverses
 - PHP ist kein JavaScript
     -Ausführen von Querys bei Klick auf Button funktioniert nicht.
+
+# Meilenstein 3 Paket 1
+## Mahlzeiten filtern
+- Momentane Implementierung erlaubt nur Oberkategorie - mehrere Unterelemente --> Keine tiefere Verschachtelung
+- hat ist sehr schlechter Bezeichner
