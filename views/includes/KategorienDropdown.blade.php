@@ -9,7 +9,6 @@
                 @endif
                 <optgroup label="{{$row['Bezeichnung']}}">
              @else
-             <option>{{$selectedID}}</option>
              <option value="{{$row['ID']}}" {{$row['ID'] == $selectedID ? 'selected' : ''}}>{{$row['Bezeichnung']}}</option>
              @endif
     @endforeach

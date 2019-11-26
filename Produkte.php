@@ -18,25 +18,60 @@ for ($i = 1; $i <= 5; $i++) {
 
 $query = 'SELECT m.ID, m.Beschreibung, m.Vorrat, b.`Alt-Text`, b.Binärdaten, m.Name FROM Mahlzeiten m
 	LEFT JOIN MahlzeitenHatBilder mhb ON m.ID = mhb.`MID` -- left join damit Mahlzeiten ohne Bild auch rein kommen
-	LEFT JOIN Bilder b ON mhb.BID = b.ID';
+	LEFT JOIN Bilder b ON mhb.BID = b.ID ';
 
 function categoryIsSet(){
     return isset($_GET['category']) && !($_GET['category'] == 'all');
 }
 
-if (isset($_GET['avail']) || categoryIsSet()){
+if (isset($_GET['avail']) || categoryIsSet() || isset($_GET['vegan']) || isset($_GET['veget'])){
     $query .= ' WHERE ';
 }
+$needsLogicalOperator = false;
+
+$showOnlyAvailable = false;
 if ($_GET['avail'] ?? false) {
     $query .= 'Vorrat > 0 ';
+    $showOnlyAvailable = true;
+    $needsLogicalOperator = true;
 }
 
-//BUT HERE IT DOES THIS IS BS EXTREME
+$showOnlyVeget = false;
+if ($_GET['veget'] ?? false) {
+    $showOnlyVeget = true;
+
+    if($needsLogicalOperator){
+        $query .= 'AND ';
+    }
+    //Mahlzeiten having no ingredients are also vegetarian... 
+    $query .= 'TRUE = ALL(SELECT z.Vegetarisch FROM Zutaten z
+               JOIN MahlzeitenEnthältZutaten mEz on mEz.ZID = z.ID
+               WHERE mEz.MID = m.ID) ';
+
+    $needsLogicalOperator = true;
+}
+
+$showOnlyVegan = false;
+if ($_GET['vegan'] ?? false) {
+    $showOnlyVegan = true;
+    if($needsLogicalOperator){
+        $query .= 'AND ';
+    }
+    //Mahlzeiten having no ingredients are also vegan... 
+    $query .= 'TRUE = ALL(SELECT z.Vegan FROM Zutaten z
+               JOIN MahlzeitenEnthältZutaten mEz on mEz.ZID = z.ID
+               WHERE mEz.MID = m.ID) ';
+
+    $needsLogicalOperator = true;
+}
+
 if(categoryIsSet()){
-    if($_GET['avail'] ?? false){
+    if($needsLogicalOperator){
         $query.= 'AND ';
     }
-    $query .= 'm.KategorieID = '.$_GET['category'];
+    $query .= 'm.KategorieID = '.$_GET['category'].' ';
+
+    $needsLogicalOperator = true;
 }
 
 if ($_GET['limit'] ?? false) {
@@ -60,16 +95,30 @@ while ($row = mysqli_fetch_assoc($category_result)) {
     $categoryList[] = $row;
 }
 
-$remoteConnection->close();
 $selectedID = -1;
 if(categoryIsSet()){
-    //FOR SOME FUCKNG REASON categoryIsSet evaluates to false
-    //ABSOLUTLY UNDEBUGABLE 
-    $selected = $_GET['category'];
-    $selected = 5;
+    $selectedID = $_GET['category'];
 }
+$selectedCategoryName = 'Bestseller';
+if(categoryIsSet()){
+    foreach($categoryList as $entr){
+        if($entr['ID'] == $_GET['category']){
+            $selectedCategoryName = $entr['Bezeichnung'];
+        }
+    }
+}
+if(mysqli_num_rows($result) == 0){
+    $selectedCategoryName = 'Keine Ergebnisse';
+}
+
+
+$remoteConnection->close();
 echo $blade->run("pages.Produkte", [
     'mealResult' => $result,
     'categoryList' => $categoryList,
-    'selectedID' => $selectedID
+    'selectedID' => $selectedID,
+    'selectedCategoryName' => $selectedCategoryName,
+    'isOnlyAvailableSelected' => $showOnlyAvailable,
+    'isVegetSelected' => $showOnlyVeget,
+    'isVeganSelected' => $showOnlyVegan
 ]);

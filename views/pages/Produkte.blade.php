@@ -7,7 +7,7 @@
     <header>
         <div class="row">
             <div class="col-3"></div>
-            <div class="col"><h2>Verfügbare Speisen (Bestseller)</h2></div>
+    <div class="col"><h2>Verfügbare Speisen ({{$selectedCategoryName}})</h2></div>
         </div>
     </header>
 
@@ -26,13 +26,13 @@
                         </div>
                         <div class="form-group">
                             <div class="checkbox">
-                                <label><input type="checkbox" name="avail"> nur verfügbare</label>
+    <label><input type="checkbox" name="avail" {{$isOnlyAvailableSelected ? 'checked' : ''}}> nur verfügbare</label>
                             </div>
                             <div class="checkbox">
-                                <label><input type="checkbox" name="veget"> nur vegetarische</label>
+    <label><input type="checkbox" name="veget" {{$isVegetSelected ? 'checked' : ''}}> nur vegetarische</label>
                             </div>
                             <div class="checkbox">
-                                <label><input type="checkbox" name="vegan"> nur vegane</label>
+    <label><input type="checkbox" name="vegan" {{$isVeganSelected ? 'checked' : ''}}> nur vegane</label>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-light">Speisen filtern</button>
