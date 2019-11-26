@@ -16,6 +16,11 @@
 -- Ihre Datenbank auswählen, ändern Sie den Namen entsprechend...
 -- USE `db3187679`;
 USE `db3188047`;
+
+-- Views löschen
+DROP VIEW IF EXISTS Nutzerrolle;
+-- Views anlegen
+
 -- Empfohlen ist, zuerst die Attribute der Tabellen anzulegen und die Relationen 
 -- anschließend vorzunehmen. dabei werden Sie erkennen, dass nicht jede Lösch-
 -- reihenfolge (DROP) funktioniert.
@@ -341,6 +346,18 @@ ALTER TABLE Kategorien ADD CONSTRAINT Kategorien_FK_Kategorien FOREIGN KEY (hat)
 ALTER TABLE Kategorien DROP CONSTRAINT Kategorien_FK_Bilder;
 ALTER TABLE Kategorien ADD CONSTRAINT Kategorien_FK_Bilder FOREIGN KEY (BilderID) REFERENCES Bilder(ID);
 
+
+-- Views anlegen
+CREATE SQL SECURITY INVOKER VIEW Nutzerrolle AS 
+SELECT 
+CASE 
+  WHEN b.Nummer IN (SELECT m.Nummer FROM Mitarbeiter m) THEN 'Mitarbeiter'
+  WHEN b.Nummer IN (SELECT s.Nummer FROM Studenten s) THEN 'Student'
+END AS Rolle,
+b.Nummer
+FROM Benutzer b;
+
+
 -- Zutaten hinzufügen; PK, Name, Bio, Vegan, Glutenfrei, Vegetarisch
 INSERT INTO Zutaten VALUES (10000, 'Isombe', TRUE, TRUE, TRUE, TRUE);
 INSERT INTO Zutaten VALUES (10001, 'Ibirayi', TRUE, TRUE, FALSE, TRUE);
@@ -412,3 +429,5 @@ SELECT m.Name, m.ID, m.Beschreibung, m.Vorrat, b.`Alt-Text`, b.Binärdaten FROM 
 -- Query: Get kategories
 SELECT k.ID, k.Bezeichnung, k.hat FROM Kategorien k 
 ORDER BY CASE WHEN k.hat IS NULL THEN k.ID ELSE k.hat END, k.hat;
+
+SELECT Rolle FROM Nutzerrolle WHERE Nummer = 2;
