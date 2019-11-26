@@ -9,9 +9,8 @@ if (mysqli_connect_errno()) {
 }
 
 //Query For Mahlzeit
-$user_price_category = 'Gastpreis';
 // left join damit Mahlzeiten ohne Bild auch rein kommen
-$query = 'SELECT m.Beschreibung, m.Name, b.`Alt-Text`, b.Binärdaten, p.'.$user_price_category.' FROM Mahlzeiten m 
+$query = 'SELECT m.Beschreibung, m.Name, b.`Alt-Text`, b.Binärdaten, p.Studentpreis, p.Gastpreis, p.`MA-Preis` FROM Mahlzeiten m 
 	LEFT JOIN MahlzeitenHatBilder mhb ON m.ID = mhb.`MID` 
 	LEFT JOIN Bilder b ON mhb.BID = b.ID 
 	JOIN Preise p ON m.ID = p.ID 
@@ -45,6 +44,15 @@ $remoteConnection->close();
 $zutaten = [];
 while ($row = $result->fetch_assoc()) {
     $zutaten[] = $row;
+}
+
+$role = $_SESSION['role'] ?? 'Gast'; // default price
+if ($role == 'Student') {
+    $user_price_category = 'Studentpreis';
+} else if ($role == 'Gast') {
+    $user_price_category = 'Gastpreis';
+} else {
+    $user_price_category = 'MA-Preis';
 }
 
 echo $blade->run("pages.Detail", [
