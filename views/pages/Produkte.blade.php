@@ -55,7 +55,8 @@
                         echo '</div>'; // end row
                         break 2; // break 2 loops
                     }
-                    echo '<div class="col-3 thumbnail">
+                    if($row['Vorrat'] > 0){
+                        echo '<div class="col-3 thumbnail">
                         <img alt="'.$row['Alt-Text'].'" class="w-100"
                             src="data:image/jpeg;base64,'.base64_encode($row["Binärdaten"]).'">
                         <div class="caption">
@@ -63,6 +64,16 @@
                             <a href="Detail.php?id='.$row['ID'].'">Details</a>
                         </div>
                     </div>';
+                    }else{
+                        echo '<div class="col-3 thumbnail">
+                        <img alt="'.$row['Alt-Text'].'" class="img-thumbnail w-100"
+                            src="data:image/jpeg;base64,'.base64_encode($row["Binärdaten"]).'">
+                        <div class="caption">
+                            '.$row['Name'].'<br>
+                            <a href="Detail.php?id='.$row['ID'].'" class="btn-link disabled">Details</a>
+                        </div>
+                    </div>';
+                    }
                 }
                 
                 echo '</div>'; // end row
