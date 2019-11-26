@@ -15,7 +15,7 @@
 
 -- Ihre Datenbank auswählen, ändern Sie den Namen entsprechend...
 -- USE `db3187679`;
-USE `db3188047`;
+USE `db3180420`;
 
 -- Views löschen
 DROP VIEW IF EXISTS Nutzerrolle;
@@ -298,13 +298,14 @@ CREATE TABLE `FH AngehörigeGehörtZuFachbereiche` (
 
 -- Aufgabe 2.3 - Kaskaden
 -- Nutzer 1
-INSERT INTO Benutzer VALUES (NULL, 'leg@lize.it', '', 'askuri',
-	'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+-- passwort: testpass; bcrypt 10 rounds
+INSERT INTO Benutzer VALUES (NULL, 'leg@lize.it', '', 'kartoffel',
+	'$2y$10$SWgfJVIbfcYsv6qBlA5rb.RSauYkEZLqsRsEdtxd6l2zGZ5q2qOLi',
 	NULL, NOW(), TRUE, 'Martin', 'Weber', '1997-08-06');
 
 -- Mitarbeiter 1
-INSERT INTO Benutzer VALUES (NULL, 'leg@liize.it', '', 'askurii',
-	'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+INSERT INTO Benutzer VALUES (NULL, 'leg@liize.it', '', 'askuri',
+	'$2y$10$SWgfJVIbfcYsv6qBlA5rb.RSauYkEZLqsRsEdtxd6l2zGZ5q2qOLi',
 	NULL, NOW(), TRUE, 'Martin', 'Weber', '1997-08-06');
 INSERT INTO `FH Angehörige` VALUES (LAST_INSERT_ID());
 INSERT INTO Mitarbeiter VALUES (LAST_INSERT_ID(), NULL, NULL);
@@ -312,14 +313,14 @@ INSERT INTO Mitarbeiter VALUES (LAST_INSERT_ID(), NULL, NULL);
 
 -- Student 1
 INSERT INTO Benutzer VALUES (NULL, 'leg@liiize.it', '', 'askuriii',
-	'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+	'$2y$10$SWgfJVIbfcYsv6qBlA5rb.RSauYkEZLqsRsEdtxd6l2zGZ5q2qOLi',
 	NULL, NOW(), TRUE, 'Martin', 'Weber', '1997-08-06');
 INSERT INTO `FH Angehörige` VALUES (LAST_INSERT_ID());
 INSERT INTO Studenten VALUES (LAST_INSERT_ID(), 'INF', 12345678);
 
 -- Student 2
 INSERT INTO Benutzer VALUES (NULL, 'leg@liiiize.it', '', 'askuriiii',
-	'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+	'$2y$10$SWgfJVIbfcYsv6qBlA5rb.RSauYkEZLqsRsEdtxd6l2zGZ5q2qOLi',
 	NULL, NOW(), TRUE, 'Martin', 'Weber', '1997-08-06');
 INSERT INTO `FH Angehörige` VALUES (LAST_INSERT_ID());
 INSERT INTO Studenten VALUES (LAST_INSERT_ID(), 'INF', 12345679);
@@ -431,3 +432,7 @@ SELECT k.ID, k.Bezeichnung, k.hat FROM Kategorien k
 ORDER BY CASE WHEN k.hat IS NULL THEN k.ID ELSE k.hat END, k.hat;
 
 SELECT Rolle FROM Nutzerrolle WHERE Nummer = 2;
+
+SELECT b.Hash, r.Rolle FROM Benutzer b
+	JOIN Nutzerrolle r ON b.Nummer = r.Nummer	
+	WHERE b.Nutzername = 'askurii';
