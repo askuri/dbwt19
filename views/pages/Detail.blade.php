@@ -28,8 +28,8 @@
             <div class="col-2 text-right">
                 <div class="row h-50">
                     <div class="col">
-                        <p class="mb-0"><strong>Gast</strong>-Preis</p>
-                        <p class="mb-0 h3"><strong>{{ $product[$user_price_category] }}</strong></p>
+                        <p class="mb-0"><strong>{{ $_SESSION['role'] ?? 'Gast' }}</strong>-Preis</p>
+                        <p class="mb-0 h3"><strong>{{ $product[$user_price_category] }} €</strong></p>
                     </div>
                 </div>
                 <div class="row align-items-end h-50">
