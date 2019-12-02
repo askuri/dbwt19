@@ -84,3 +84,7 @@ INSERT INTO Zutaten(ID, Name, Bio, Vegan, Vegetarisch, Glutenfrei)
 ## Mahlzeiten filtern
 - Momentane Implementierung erlaubt nur Oberkategorie - mehrere Unterelemente --> Keine tiefere Verschachtelung
 - hat ist sehr schlechter Bezeichner
+
+# Meilenstein 3 Paket 2
+## Php diverses
+- Namespaces \ statt / 

@@ -15,7 +15,7 @@
             <!-- login -->
             <div class="col-3">
                 <aside>
-                    @include('includes.Login')
+                    @include('shared.Login')
                 </aside>
             </div>
 
@@ -72,7 +72,7 @@
                         {{ $product['Beschreibung'] }}
                     </div>
                     <div class="tab-pane fade" id="zutaten" role="tabpanel" aria-labelledby="zutaten-tab">
-                        @include('includes.ZutatenTabelle', ['zliste' => $zutaten])
+                        @include('shared.ZutatenTabelle', ['zliste' => $zutaten])
                     </div>
 
                     <!-- Mahlzeit-Bewertung -->

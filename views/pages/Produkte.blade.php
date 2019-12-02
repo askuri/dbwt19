@@ -19,7 +19,7 @@
                     <legend class="col-form-label w-auto">Speiseliste filtern</legend>
                     <form method="get" action="#">
                         <div class="form-group">
-    @include('includes.KategorienDropdown', ['categorylist' => $categoryList,
+    @include('shared.KategorienDropdown', ['categorylist' => $categoryList,
                                              'selectedID' => $selectedID
     ])
 
