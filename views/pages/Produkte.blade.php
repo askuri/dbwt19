@@ -43,43 +43,32 @@
 
         <!-- gallery -->
         <div class="col-7 text-center">
-        @php
-            
-            while (true) {
-                echo '<div class="row">'; // start new row
-                
-                for ($x = 0; $x < 4; $x++) {
-                    
-                    $row = mysqli_fetch_assoc($mealResult);
-                    if (!$row) {
-                        echo '</div>'; // end row
-                        break 2; // break 2 loops
-                    }
-                    if($row['Vorrat'] > 0){
-                        echo '<div class="col-3 thumbnail">
-                        <img alt="'.$row['Alt-Text'].'" class="w-100"
-                            src="data:image/jpeg;base64,'.base64_encode($row["Binärdaten"]).'">
-                        <div class="caption">
-                            '.$row['Name'].'<br>
-                            <a href="Detail.php?id='.$row['ID'].'">Details</a>
-                        </div>
-                    </div>';
-                    }else{
-                        echo '<div class="col-3 thumbnail">
-                        <img alt="'.$row['Alt-Text'].'" class="img-thumbnail w-100"
-                            src="data:image/jpeg;base64,'.base64_encode($row["Binärdaten"]).'">
-                        <div class="caption">
-                            '.$row['Name'].'<br>
-                            <a href="Detail.php?id='.$row['ID'].'" class="btn-link disabled">Details</a>
-                        </div>
-                    </div>';
-                    }
-                }
-                
-                echo '</div>'; // end row
-            }
-    @endphp
-           
+
+    @while (true)
+        <div class="row"> {{-- start new row --}}
+
+            @for ($x = 0; $x < 4; $x++)
+                {{$row = mysqli_fetch_assoc($mealResult)}}
+                @if (!$row)
+                    <?php $product_gallery_no_more_products = true ?>
+                    @break
+                @endif
+                <?php $product_img_class = $row['Vorrat'] > 0 ? 'w-100' : 'w-100 img-thumbnail' ?>
+                <?php $product_link_class = $row['Vorrat'] > 0 ? '' : 'btn-link disabled'?>
+
+                <div class="col-3 thumbnail">
+                    <img alt="{{$row['Alt-Text']}}" class="{{$product_img_class}}"
+                        src="data:image/jpeg;base64,{{base64_encode($row["Binärdaten"])}}">
+                    <div class="caption">
+                        {{$row['Name']}}<br>
+                        <a href="Detail.php?id={{$row['ID']}}" class="{{$product_link_class}}">Details</a>
+                    </div>
+                </div>
+            @endfor
+        </div>
+        @break ($product_gallery_no_more_products)
+    @endwhile
+
             <!-- Beispiele
             <div class="row">
                 <div class="col-3 thumbnail">
