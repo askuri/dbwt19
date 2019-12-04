@@ -2,14 +2,14 @@
     <optgroup label="Generell">
         <option value="all">Alle zeigen</option>
     </optgroup>
-    @foreach($categoryList as $row)
-             @if ($row['hat'] === NULL)
+    @foreach($categoryList as $category)
+             @if ($category->hat === NULL)
                 @if (!$loop->first)
                 </optgroup>
                 @endif
-                <optgroup label="{{$row['Bezeichnung']}}">
+                <optgroup label="{{$category->Bezeichnung}}">
              @else
-             <option value="{{$row['ID']}}" {{$row['ID'] == $selectedID ? 'selected' : ''}}>{{$row['Bezeichnung']}}</option>
+             <option value="{{$category->ID}}" {{$category->ID == $selectedID ? 'selected' : ''}}>{{$category->Bezeichnung}}</option>
              @endif
     @endforeach
     @if (!empty($categoryList))

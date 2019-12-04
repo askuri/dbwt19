@@ -1,7 +1,7 @@
 <?php
 namespace Emensa\Controller;
 
-require './inc/PHPprepare.php';
+require_once './inc/PHPprepare.php';
 
 class StartController{
 
@@ -10,4 +10,3 @@ class StartController{
         return $blade->run("start.Start",  []);
     }
 }
-?>
