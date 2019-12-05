@@ -13,7 +13,7 @@
 
         <div class="row justify-content-between pt-4" >
             <div class="col-3" >
-                <p>Der Dienst <b>e-Mensa</b> ist noch beta. Sie können bereits <a class="link" href="Produkte.html">Mahlzeiten</a> durchstöbern, aber noch nicht bestellen.</p>
+                <p>Der Dienst <b>e-Mensa</b> ist noch beta. Sie können bereits <a class="link" href="Produkte.php">Mahlzeiten</a> durchstöbern, aber noch nicht bestellen.</p>
             </div>
             <div class="col-6">
                 <h3>Leckere Gerichte vorbestellen</h3>
@@ -32,7 +32,7 @@
 
         <div class="row" >
             <div class="col-3" >
-                <p>Registrieren Sie sich <a class="link" href="Registrieren.html">hier</a>, um über die Veröffentlichung des Dienstes per Mail informiert zu werden.</p>
+                <p>Registrieren Sie sich <a class="link" href="Registrieren.php">hier</a>, um über die Veröffentlichung des Dienstes per Mail informiert zu werden.</p>
             </div>
             <div class="col-9">
                 <img class="w-100" src="https://dummyimage.com/800x200/000/fff" alt="Picture">
