@@ -1,6 +1,6 @@
 <?php
-require 'inc/PHPprepare.php';
+require_once './controllers/ImpressumController.php';
+use \Emensa\Controller;
 
-echo $blade->run("pages.Impressum",  [
-    
-]);
+$controller = new \Emensa\Controller\ImpressumController();
+echo $controller->getView();

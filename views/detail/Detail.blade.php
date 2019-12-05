@@ -7,7 +7,7 @@
         <header>
             <div class="row">
                 <div class="col-3"></div> 
-                <div class="col"><h2>Details für "{{ $product['Name'] }}"</h2></div>
+                <div class="col"><h2>Details für "{{ $product->Name }}"</h2></div>
             </div>
         </header>
 
@@ -21,15 +21,16 @@
 
             <!-- detail image -->
             <div class="col-7">
-                <img alt="{{ $product["Alt-Text"] }}" class="w-100" src="data:image/jpeg;base64,{{ base64_encode($product["Binärdaten"]) }}">
+                <img alt="{{ $picture->AltText }}" class="w-100"
+                     src="data:image/jpeg;base64,{{ base64_encode($picture->Binärdaten) }}">
             </div>
 
             <!-- price and order -->
             <div class="col-2 text-right">
                 <div class="row h-50">
                     <div class="col">
-                        <p class="mb-0"><strong>{{ $_SESSION['role'] ?? 'Gast' }}</strong>-Preis</p>
-                        <p class="mb-0 h3"><strong>{{ $product[$user_price_category] }} €</strong></p>
+                        <p class="mb-0"><strong>{{ $user_price_category }}</strong></p>
+                        <p class="mb-0 h3"><strong>{{ $productPrice }} €</strong></p>
                     </div>
                 </div>
                 <div class="row align-items-end h-50">
@@ -69,7 +70,7 @@
                 <!-- below the page selector -->
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="beschreibung" role="tabpanel" aria-labelledby="beschreibung-tab">
-                        {{ $product['Beschreibung'] }}
+                        {{ $product->Beschreibung }}
                     </div>
                     <div class="tab-pane fade" id="zutaten" role="tabpanel" aria-labelledby="zutaten-tab">
                         @include('shared.ZutatenTabelle', ['zliste' => $zutaten])
@@ -84,7 +85,7 @@
                             <label for="bewertung_mahlzeit" class="col-6 col-form-label text-right">Mahlzeit</label>
                             <div class="col-6">
                                 <select id="bewertung_mahlzeit" class="form-control" name="mahlzeit">
-                                    <option selected value="Falafel">Falafel</option>
+                                    <option selected value="{{$product->Name}}">{{$product->Name}}</option>
                                 </select>
                             </div>
                         </div>

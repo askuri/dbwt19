@@ -5,6 +5,7 @@ namespace Emensa\Controller{
 
     class ZutatenController
     {
+
         public function getView(){
             global $blade;
 

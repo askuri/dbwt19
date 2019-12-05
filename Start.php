@@ -5,4 +5,3 @@ $controller = new Emensa\Controller\StartController();
 
 echo $controller->getView();
 
-?>

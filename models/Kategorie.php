@@ -12,7 +12,7 @@ class Kategorie
 
     public static function getAllCategoriesOrderedHierarchical($remoteConnection){
         $category_query = 'SELECT k.ID, k.Bezeichnung, k.hat FROM Kategorien k
-                           ORDER BY CASE WHEN k.hat IS NULL THEN k.ID ELSE k.hat END, k.hat';
+                           ORDER BY CASE WHEN k.hat IS NULL THEN k.ID ELSE k.hat END, k.hat;';
         if (!($category_result = mysqli_query($remoteConnection, $category_query))) {
             echo mysqli_error($remoteConnection);
             die('Query konnte nicht ausgeführt werden');
