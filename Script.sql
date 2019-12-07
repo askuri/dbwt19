@@ -14,8 +14,7 @@
 
 
 -- Ihre Datenbank auswählen, ändern Sie den Namen entsprechend...
--- USE `db3187679`;
-USE `db3180420`;
+USE `db318`;
 
 -- Views löschen
 DROP VIEW IF EXISTS Nutzerrolle;
@@ -36,7 +35,7 @@ DROP TABLE IF EXISTS `FH AngehörigeGehörtZuFachbereiche`;
 
 -- Entitäten löschen
 -- Entität "an den rändern"
-DROP TABLE IF EXISTS `Fachbreiche`;
+DROP TABLE IF EXISTS `Fachbereiche`;
 DROP TABLE IF EXISTS `Zutaten`;
 DROP TABLE IF EXISTS `Deklarationen`;
 DROP TABLE IF EXISTS `Preise`;
@@ -103,7 +102,7 @@ CREATE TABLE `FH Angehörige` (
 
 
 -- -----------------
-CREATE TABLE `Fachbreiche` (
+CREATE TABLE `Fachbereiche` (
 	`ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Website` VARCHAR(255) NOT NULL,
 	`Name` VARCHAR(50) NOT NULL,
@@ -128,7 +127,8 @@ CREATE TABLE `Studenten` (
 	`Studiengang` ENUM('ET', 'INF', 'ISE', 'MCD', 'WI') NOT NULL,
 	`Matrikelnummer` MEDIUMINT UNSIGNED NOT NULL,
 
- 	PRIMARY KEY (Matrikelnummer),
+ 	PRIMARY KEY (Nummer),
+ 	CONSTRAINT Studenten_unique_Matrikelnummer UNIQUE(Matrikelnummer),
 	CONSTRAINT Studenten_check_Matrikelnummer CHECK(Matrikelnummer >= 10000000 AND Matrikelnummer < 1000000000),
 	CONSTRAINT Studenten_FK_FH_Angehörige FOREIGN KEY (Nummer) REFERENCES `FH Angehörige`(Nummer)
 		ON DELETE CASCADE -- kaskadiertes löschen aus 2.3
@@ -292,7 +292,7 @@ CREATE TABLE `FH AngehörigeGehörtZuFachbereiche` (
 	
 	PRIMARY KEY (AngehörigenID, FbID),
 	CONSTRAINT FH_AngehörigeGehörtZuFachbereiche_FK_FH_Angehörige FOREIGN KEY (AngehörigenID) REFERENCES `FH Angehörige`(Nummer),
-	CONSTRAINT FH_AngehörigeGehörtZuFachbereiche_FK_Fachbereiche FOREIGN KEY (FbID) REFERENCES Fachbreiche(ID)
+	CONSTRAINT FH_AngehörigeGehörtZuFachbereiche_FK_Fachbereiche FOREIGN KEY (FbID) REFERENCES Fachbereiche(ID)
 );
 
 
@@ -349,7 +349,7 @@ ALTER TABLE Kategorien ADD CONSTRAINT Kategorien_FK_Bilder FOREIGN KEY (BilderID
 
 
 -- Views anlegen
-CREATE SQL SECURITY INVOKER VIEW Nutzerrolle AS 
+CREATE VIEW Nutzerrolle AS 
 SELECT 
 CASE 
   WHEN b.Nummer IN (SELECT m.Nummer FROM Mitarbeiter m) THEN 'Mitarbeiter'
@@ -396,6 +396,11 @@ INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 4.10, 2.60, 99);
 INSERT INTO Mahlzeiten VALUES (NULL, 6, 'Pizza', 'Nur Mittwochs!', 0);
 INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
 
+-- Fachbereiche
+INSERT INTO Fachbereiche (Website,Name)
+	VALUES ('meinewebsite','FB5');
+INSERT INTO Fachbereiche (Website,Name)
+	VALUES ('derenwebsite','FB7');
 
 -- copy zutaten from public
 INSERT INTO Zutaten(ID, Name, Bio, Vegan, Vegetarisch, Glutenfrei)
