@@ -7,7 +7,7 @@
                     <a class="nav-link" href="#">Login</a>
                 </li>
                 <li class="nav-item nav-border-right">
-                    <a class="nav-link" href="#">Registrieren</a>
+                    <a class="nav-link" {!! $_SERVER['REQUEST_URI'] === '/Registrieren.php' ? ' ' : 'href="Registrieren.php"' !!}>Registrieren</a>
                 </li>
                 <li class="nav-item nav-border-right">
                     <a class="nav-link" {!! $_SERVER['REQUEST_URI'] === '/Zutaten.php' ? ' ' : 'href="Zutaten.php"' !!}>Zutatenliste</a>
