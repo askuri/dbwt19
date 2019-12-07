@@ -125,7 +125,7 @@ CREATE TABLE `Mitarbeiter` (
 CREATE TABLE `Studenten` (
 	`Nummer` INT UNSIGNED NOT NULL,
 	`Studiengang` ENUM('ET', 'INF', 'ISE', 'MCD', 'WI') NOT NULL,
-	`Matrikelnummer` MEDIUMINT UNSIGNED NOT NULL,
+	`Matrikelnummer` INT UNSIGNED NOT NULL,
 
  	PRIMARY KEY (Nummer),
  	CONSTRAINT Studenten_unique_Matrikelnummer UNIQUE(Matrikelnummer),
