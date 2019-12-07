@@ -135,6 +135,28 @@ CREATE PROCEDURE price_for_user
 
 
 ## Registrierung
+- Fehlermeldungen: 
+Doppelter Benutzername:
+Error occurred during SQL script execution
+Reason:
+SQL Error [1062] [23000]: (conn=279535) Duplicate entry 'askuri' for key 'Benutzer_Unique_Nutzername'
+
+Doppelter E-Mail Eintrag:
+Error occurred during SQL script execution
+Reason:
+SQL Error [1062] [23000]: (conn=279535) Duplicate entry 'leg@liiize.it' for key 'Benutzer_Unique_email'
+
+Doppelter Matrikelnummer:
+Error occurred during SQL query execution
+Reason:
+SQL Error [1062] [23000]: (conn=279535) Duplicate entry '12345678' for key 'Studenten_unique_Matrikelnummer'
+
+Falsche Matrikelnummer:
+Error occurred during SQL query execution
+Reason:
+SQL Error [4025] [23000]: (conn=279535) CONSTRAINT `Studenten_check_Matrikelnummer` failed for `db3188047`.`Studenten`
+
 * Problem bei vielen gleichzeitigen Registrierungen: Viele einzelne Queries mit einzelnen Transaktionen, die evtl Rollback haben --> Hohe Last viel 
+
 ## Php diverses
 - Namespaces \ statt / 
