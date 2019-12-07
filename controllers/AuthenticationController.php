@@ -37,6 +37,7 @@ class AuthenticationController
                 $_SESSION['loginstatus'] = 'fail';
             }
         }
+        $remoteConnection->close();
     }
 
 }
