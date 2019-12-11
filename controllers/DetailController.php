@@ -39,6 +39,7 @@ class DetailController
 
         //Get zutaten
         $zutaten = Zutat::getAllForProduct($remoteConnection, $productID);
+        $remoteConnection->close();
 
         global $blade;
         return $blade->run("detail.Detail", [
