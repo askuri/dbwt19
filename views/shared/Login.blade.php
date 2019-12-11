@@ -13,12 +13,12 @@ $status = $_SESSION['loginstatus'] ?? '';
         <legend class="col-form-label w-auto">Login</legend>
         <form method="post" action="Auth.php">
             <div class="form-group">
-                <input type="text" class="form-control form-control-sm"
-                       name="user" class="bg-danger" id="inputUser"placeholder="Benutzer">
+                <input type="text" class="form-control form-control-sm bg-danger"
+                       name="user" id="inputUser" placeholder="Benutzer">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control form-control-sm"
-                       name="pass" class="bg-danger" id="inputPassword" placeholder="******">
+                <input type="password" class="form-control form-control-sm bg-danger"
+                       name="pass" id="inputPassword" placeholder="******">
             </div>
 
             <button type="submit" class="btn btn-link">Anmelden</button>
@@ -30,11 +30,11 @@ $status = $_SESSION['loginstatus'] ?? '';
         <form method="post" action="Auth.php">
             <div class="form-group">
                 <input type="text" class="form-control form-control-sm"
-                       name="user" id="inputUser" name="user" placeholder="Benutzer">
+                       name="user" id="inputUser" placeholder="Benutzer">
             </div>
             <div class="form-group">
                 <input type="password" class="form-control form-control-sm"
-                       name="pass" id="inputPassword" name="pass" placeholder="******">
+                       name="pass" id="inputPassword" placeholder="******">
             </div>
 
             <button type="submit" class="btn btn-link">Anmelden</button>
