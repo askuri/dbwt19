@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Zutaten')
+{{--@section('title', 'Zutaten')--}}
 
 @section('content')
     <main>
@@ -15,14 +15,16 @@
             <!-- login -->
             <div class="col-3">
                 <aside>
-                    @include('shared.Login')
+                    @include('login.Login')
                 </aside>
             </div>
 
             <!-- detail image -->
             <div class="col-7">
+                @if($picture)
                 <img alt="{{ $picture->AltText }}" class="w-100"
                      src="data:image/jpeg;base64,{{ base64_encode($picture->Binärdaten) }}">
+                @endif
             </div>
 
             <!-- price and order -->
@@ -78,44 +80,7 @@
 
                     <!-- Mahlzeit-Bewertung -->
                     <div class="tab-pane fade" id="bewertungen" role="tabpanel" aria-labelledby="bewertung-tab">
-                        <form action="http://bc5.m2c-lab.fh-aachen.de/form.php" method="post">
-                        <input type="hidden"  name="matrikel" value="3188047"> 
-                        <input type="hidden"  name="kontrolle" value="Kip"> 
-                        <div class="form-group row justify-content-center">
-                            <label for="bewertung_mahlzeit" class="col-6 col-form-label text-right">Mahlzeit</label>
-                            <div class="col-6">
-                                <select id="bewertung_mahlzeit" class="form-control" name="mahlzeit">
-                                    <option selected value="{{$product->Name}}">{{$product->Name}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row justify-content-center">
-                            <label for="bewertung_user" class="col-6 col-form-label text-right">Benutzername</label>
-                            <div class="col-6">
-                                <input required type="text" name="benutzer" class="form-control" id="bewertung_user" placeholder="Max Mustermann">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="rating_rating" class="col-6 col-form-label text-right">Bewertung</label>
-                            <div class="col-6">
-                                <input type="number" min="0" max="5" name="bewertung" id="rating_rating"  step="1">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="bewertung_bemerkung" class="col-6 col-form-label text-right">Bemerkung</label>
-                            <div class="col-6">
-                                <textarea cols="15" id="bewertung_bemerkung" name="Bemerkung" rows="4">
-                                    Geben Sie eine Bemerkung ein, wenn Sie möchten...
-                                </textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-6"></div>
-                            <div class="col-6">
-                            <button type="submit" class="btn btn-link">Bewertung absenden <i class="fa fa-chevron-right"></i></button>
-                            </div>
-                        </div>
-                        </form>
+                        @include('bewertungen.create', [ 'mahlzeitName' => $product->Name, 'mahlzeitID' => $product->ID])
                     </div>
                 </div>
             </div>

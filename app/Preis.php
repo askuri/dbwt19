@@ -4,16 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kommentar extends Model
+class Preis extends Model
 {
-    protected $table = 'Kommentare';
+    protected $table = 'Preise';
     protected $primaryKey = 'ID';
     public $timestamps = false;
-
-    public function benutzer()
-    {
-        return $this->belongsTo('App\ORMBenutzer', 'StudentenID', 'Nummer');
-    }
 
     public function mahlzeit(){
         return $this->belongsTo('App\Mahlzeit', 'MahlzeitenID', 'ID');

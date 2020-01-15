@@ -1,6 +1,6 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')--}}
 
-@section('content')
+{{--@section('content')--}}
     @php
     $status = session('loginstatus') ?? '';
     @endphp
@@ -47,4 +47,4 @@
             </form>
         </fieldset>
     @endif
-@endsection
+{{--@endsection--}}

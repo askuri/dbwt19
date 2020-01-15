@@ -14,13 +14,13 @@
 
 
 -- Ihre Datenbank auswählen, ändern Sie den Namen entsprechend...
-USE `db318`;
+USE `db3187679`;
 
 -- Views löschen
 DROP VIEW IF EXISTS Nutzerrolle;
 -- Views anlegen
 
--- Empfohlen ist, zuerst die Attribute der Tabellen anzulegen und die Relationen 
+-- Empfohlen ist, zuerst die Attribute der Tabellen anzulegen und die Relationen
 -- anschließend vorzunehmen. dabei werden Sie erkennen, dass nicht jede Lösch-
 -- reihenfolge (DROP) funktioniert.
 
@@ -165,7 +165,7 @@ CREATE TABLE `Kategorien` (
 	`BilderID` INT UNSIGNED, -- fk
 	`Bezeichnung` VARCHAR(50) NOT NULL,
 	hat INT UNSIGNED, -- für rekursive beziehung
-	
+
 	PRIMARY KEY (`ID`),
 	CONSTRAINT Kategorien_FK_Kategorien FOREIGN KEY (hat) REFERENCES Kategorien(ID), -- "Kategorie hat Kategorien"
 	CONSTRAINT Kategorien_FK_Bilder FOREIGN KEY (BilderID) REFERENCES Bilder(ID)
@@ -179,7 +179,7 @@ CREATE TABLE `Mahlzeiten` (
   Name Varchar(30),
 	`Beschreibung` VARCHAR(200) NOT NULL,
 	`Vorrat` INT NOT NULL DEFAULT 0,
-	
+
 	PRIMARY KEY (`ID`),
 	CONSTRAINT Mahlzeiten_FK_Kategorie FOREIGN KEY (KategorieID) REFERENCES Kategorien(ID) -- "Mahlzeiten in Kategorie"
 );
@@ -189,7 +189,7 @@ CREATE TABLE `Mahlzeiten` (
 CREATE TABLE `Deklarationen` (
 	`Zeichen` VARCHAR(2) NOT NULL,
 	`Beschriftung` VARCHAR(32),
-	
+
 	PRIMARY KEY(`Zeichen`)
 );
 
@@ -202,7 +202,7 @@ CREATE TABLE `Preise` (
 	`Gastpreis` FLOAT(4,2) UNSIGNED NOT NULL, -- (4,2) = 4 stellen insgesamt, 2 dezimal
 	`Studentpreis` FLOAT(4,2) UNSIGNED,
 	`MA-Preis` FLOAT(4,2) UNSIGNED,
-	
+
 	PRIMARY KEY (ID, Jahr), -- ID übernommen aus mahlzeiten
 	CONSTRAINT Preise_FK_Mahlzeiten FOREIGN KEY (MahlzeitenID) REFERENCES Mahlzeiten(ID), -- "kostet"
 	CONSTRAINT Preise_check CHECK(`Studentpreis` < `MA-Preis`)
@@ -211,13 +211,13 @@ CREATE TABLE `Preise` (
 -- -----------------
 CREATE TABLE `Zutaten` (
 -- max 5 lang definiert im Datentyp
-`ID` MEDIUMINT(5) UNSIGNED  CHECK (ID > 9999 && ID < 100000), 
+`ID` MEDIUMINT(5) UNSIGNED  CHECK (ID > 9999 && ID < 100000),
 	`Name` VARCHAR(50) NOT NULL,
 	`Bio` BOOL NOT NULL,
 	`Vegan` BOOL NOT NULL,
 	`Glutenfrei` BOOL NOT NULL,
 	`Vegetarisch` BOOL NOT NULL,
-	
+
 	PRIMARY KEY (`ID`)
 );
 
@@ -229,7 +229,8 @@ CREATE TABLE `Kommentare` (
 	StudentenID INT UNSIGNED,
 	`Bemerkung` VARCHAR(500),
 	`Bewertung` TINYINT UNSIGNED NOT NULL,
-	
+	`Datum` DATETIME,
+
 	PRIMARY KEY(`ID`),
 	CONSTRAINT Kommentare_FK_Mahlzeiten FOREIGN KEY (MahlzeitenID) REFERENCES Mahlzeiten(ID), -- "Kommentare zu Mahlzeiten"
 	CONSTRAINT Kommentare_FK_Studenten FOREIGN KEY (StudentenID) REFERENCES Studenten(Nummer) -- Studenten schreibt Kommentare"
@@ -243,7 +244,7 @@ CREATE TABLE `Kommentare` (
 CREATE TABLE BenutzerBefreundetMit (
 	Nummer1 INT UNSIGNED NOT NULL,
 	Nummer2 INT UNSIGNED NOT NULL,
-	
+
 	PRIMARY KEY (Nummer1, Nummer2),
 	CONSTRAINT BenutzerBefreundetMit_FK_Benutzer1 FOREIGN KEY (Nummer1) REFERENCES Benutzer(Nummer),
 	CONSTRAINT BenutzerBefreundetMit_FK_Benutzer2 FOREIGN KEY (Nummer2) REFERENCES Benutzer(Nummer)
@@ -253,7 +254,7 @@ CREATE TABLE BestellungenEnthältMahlzeiten (
 	Nummer INT UNSIGNED NOT NULL,
 	ID INT UNSIGNED NOT NULL,
 	Anzahl TINYINT UNSIGNED NOT NULL,
-	
+
 	PRIMARY KEY (Nummer, ID),
 	CONSTRAINT BestellungenEnthältMahlzeiten_FK_Bestellungen FOREIGN KEY (Nummer) REFERENCES Bestellungen(Nummer),
 	CONSTRAINT BestellungenEnthältMahlzeiten_FK_Mahlzeiten FOREIGN KEY (ID) REFERENCES Mahlzeiten(ID)
@@ -262,7 +263,7 @@ CREATE TABLE BestellungenEnthältMahlzeiten (
 CREATE TABLE MahlzeitenBrauchtDeklarationen (
 	ID INT UNSIGNED NOT NULL,
 	Zeichen VARCHAR(2) NOT NULL,
-	
+
 	PRIMARY KEY (ID, Zeichen),
 	CONSTRAINT MahlzeitenBrauchtDeklarationen_FK_Mahlzeiten FOREIGN KEY (ID) REFERENCES Mahlzeiten(ID),
 	CONSTRAINT MahlzeitenBrauchtDeklarationen_FK_Deklarationen FOREIGN KEY (Zeichen) REFERENCES Deklarationen(Zeichen)
@@ -271,7 +272,7 @@ CREATE TABLE MahlzeitenBrauchtDeklarationen (
 CREATE TABLE MahlzeitenEnthältZutaten (
 	`MID` INT UNSIGNED, -- nullable damit on delete set null funktioniert
 	`ZID` MEDIUMINT(5) UNSIGNED NOT NULL,
-	
+
 	PRIMARY KEY (`ZID`),
 	CONSTRAINT MahlzeitenEnthältZutaten_FK_Mahlzeiten FOREIGN KEY (`MID`) REFERENCES Mahlzeiten(ID),
 	CONSTRAINT MahlzeitenEnthältZutaten_FK_Zuaten FOREIGN KEY (`ZID`) REFERENCES Zutaten(ID)
@@ -280,7 +281,7 @@ CREATE TABLE MahlzeitenEnthältZutaten (
 CREATE TABLE MahlzeitenHatBilder (
 	`MID` INT UNSIGNED NOT NULL,
 	`BID` INT UNSIGNED NOT NULL,
-	
+
 	PRIMARY KEY (`MID`, `BID`),
 	CONSTRAINT MahlzeitenHatBilder_FK_Mahlzeiten FOREIGN KEY (`MID`) REFERENCES Mahlzeiten(ID),
 	CONSTRAINT MahlzeitenHatBilder_FK_Bilder FOREIGN KEY (`BID`) REFERENCES Bilder(ID)
@@ -289,7 +290,7 @@ CREATE TABLE MahlzeitenHatBilder (
 CREATE TABLE `FH AngehörigeGehörtZuFachbereiche` (
 	AngehörigenID INT UNSIGNED NOT NULL,
 	FbID INT UNSIGNED NOT NULL,
-	
+
 	PRIMARY KEY (AngehörigenID, FbID),
 	CONSTRAINT FH_AngehörigeGehörtZuFachbereiche_FK_FH_Angehörige FOREIGN KEY (AngehörigenID) REFERENCES `FH Angehörige`(Nummer),
 	CONSTRAINT FH_AngehörigeGehörtZuFachbereiche_FK_Fachbereiche FOREIGN KEY (FbID) REFERENCES Fachbereiche(ID)
@@ -349,9 +350,9 @@ ALTER TABLE Kategorien ADD CONSTRAINT Kategorien_FK_Bilder FOREIGN KEY (BilderID
 
 
 -- Views anlegen
-CREATE VIEW Nutzerrolle AS 
-SELECT 
-CASE 
+CREATE VIEW Nutzerrolle AS
+SELECT
+CASE
   WHEN b.Nummer IN (SELECT m.Nummer FROM Mitarbeiter m) THEN 'Mitarbeiter'
   WHEN b.Nummer IN (SELECT s.Nummer FROM Studenten s) THEN 'Student'
 END AS Rolle,
@@ -382,19 +383,19 @@ INSERT INTO Kategorien(ID, Bezeichnung, hat) VALUES
 
 -- Mahlzeiten einfügen
 INSERT INTO Mahlzeiten VALUES (NULL, 4, 'Kawunga','Ein Gericht aus Ruanda', 1);
-INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
+INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2020, 3.60, 2.10, 99);
 
 INSERT INTO Mahlzeiten VALUES (NULL, 2, 'Pommes','Frisch aus der Fritteuse', 1);
-INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
+INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2020, 3.60, 2.10, 99);
 
 INSERT INTO Mahlzeiten VALUES (NULL, 3,'Döner', 'Vegetarischer Döner', 1);
-INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
+INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2020, 3.60, 2.10, 99);
 
 INSERT INTO Mahlzeiten VALUES (NULL, 5,'Lasagne', 'Martin kennt nur Fastfood', 1);
-INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 4.10, 2.60, 99);
+INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2020, 4.10, 2.60, 99);
 
 INSERT INTO Mahlzeiten VALUES (NULL, 6, 'Pizza', 'Nur Mittwochs!', 0);
-INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2019, 3.60, 2.10, 99);
+INSERT INTO Preise VALUES (NULL, LAST_INSERT_ID(), 2020, 3.60, 2.10, 99);
 
 -- Fachbereiche
 INSERT INTO Fachbereiche (Website,Name)
@@ -433,11 +434,11 @@ SELECT m.Name, m.ID, m.Beschreibung, m.Vorrat, b.`Alt-Text`, b.Binärdaten FROM 
 	LEFT JOIN Bilder b ON mhb.BID = b.ID;
 
 -- Query: Get kategories
-SELECT k.ID, k.Bezeichnung, k.hat FROM Kategorien k 
+SELECT k.ID, k.Bezeichnung, k.hat FROM Kategorien k
 ORDER BY CASE WHEN k.hat IS NULL THEN k.ID ELSE k.hat END, k.hat;
 
 SELECT Rolle FROM Nutzerrolle WHERE Nummer = 2;
 
 SELECT b.Hash, r.Rolle FROM Benutzer b
-	JOIN Nutzerrolle r ON b.Nummer = r.Nummer	
+	JOIN Nutzerrolle r ON b.Nummer = r.Nummer
 	WHERE b.Nutzername = 'askurii';

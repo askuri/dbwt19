@@ -1,6 +1,5 @@
-{{--@extends('layouts.app')--}}
-
-{{--@section('content')--}}
+@extends('layouts.app')
+@section('content')
 <h1>Mahlzeit {{$mahlzeitName}} bewerten</h1>
 
 <form action="/bewertungen/schreiben" method="post">
@@ -27,4 +26,4 @@
         </div>
     </div>
 </form>
-{{--@endsection--}}
+@endsection

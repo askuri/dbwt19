@@ -37,11 +37,11 @@ class LoginController extends Controller
             }
         }
         
-        return redirect('/login');
+        return back()->withInput();
     }
     
     public function logout(Request $request) {
         $request->session()->flush();
-        return redirect('/login');
+        return back()->withInput();
     }
 }
